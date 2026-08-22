@@ -1,6 +1,8 @@
 import { useIntersectionObserver, useReducedMotion } from "../hooks/useIntersectionObserver";
-import { GitBranch, ExternalLink, Eye, Code2, Layers, Cpu, Database, Brain, Zap, Terminal } from "lucide-react";
+import { GitBranch, ExternalLink, Eye, Code2, Layers, Cpu, Database, Brain, Zap, Terminal, Maximize2 } from "lucide-react";
 import { projects, additionalProjects } from "../data/portfolio";
+import { ProjectModal } from "./ProjectModal";
+import { useState } from "react";
 
 const categoryIcons = {
   "AI / Computer Vision": Brain,
@@ -42,16 +44,18 @@ function TechIcon({ name }) {
   return <Icon size={12} className="text-accent/70" aria-hidden="true" />;
 }
 
-function ProjectCard({ project, index, isFeatured = false }) {
+function ProjectCard({ project, index, isFeatured = false, onOpenModal }) {
   const reducedMotion = useReducedMotion();
   const [cardRef, isVisible] = useIntersectionObserver({ triggerOnce: true });
 
   const CategoryIcon = categoryIcons[project.category] || Code2;
+  const hasHeroImage = project.heroImage;
 
   return (
     <article
       ref={cardRef}
-      className={`group relative overflow-hidden rounded-2xl border border-border bg-bg-elevated/50 hover:border-accent-border hover:bg-accent-bg/30 transition-all duration-300 ${
+      onClick={() => onOpenModal(project)}
+      className={`group relative overflow-hidden rounded-2xl border border-border bg-bg-elevated/50 hover:border-accent-border hover:bg-accent-bg/30 transition-all duration-300 cursor-pointer ${
         isFeatured
           ? "md:col-span-2 lg:col-span-3"
           : "md:col-span-1"
@@ -59,8 +63,31 @@ function ProjectCard({ project, index, isFeatured = false }) {
       style={{
         animationDelay: reducedMotion ? "0ms" : `${index * 120}ms`,
       }}
+      role="button"
+      tabIndex={0}
+      onKeyDown={(e) => (e.key === "Enter" || e.key === " ") && onOpenModal(project)}
+      aria-label={`View details for ${project.title}`}
     >
       <div className="absolute inset-0 bg-gradient-to-br from-accent/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" aria-hidden="true" />
+
+      {/* Hero Image */}
+      {hasHeroImage && (
+        <div className="relative h-48 md:h-56 overflow-hidden">
+          <img
+            src={project.heroImage}
+            alt={`${project.title} - Project preview`}
+            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+            loading="lazy"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-bg/80 via-transparent to-transparent" aria-hidden="true" />
+          <div className="absolute bottom-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+            <span className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-bg/90 backdrop-blur-sm border border-border text-text font-medium rounded-lg">
+              <Maximize2 size={14} />
+              View Details
+            </span>
+          </div>
+        </div>
+      )}
 
       <div className="relative p-6 md:p-8 h-full flex flex-col">
         <div className="flex items-start justify-between gap-4 mb-4">
@@ -113,6 +140,7 @@ function ProjectCard({ project, index, isFeatured = false }) {
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 text-sm font-medium text-text-muted hover:text-accent transition-colors focus-visible"
               aria-label={`View ${project.title} on GitHub`}
+              onClick={(e) => e.stopPropagation()}
             >
               <GitBranch size={16} />
               Code
@@ -125,6 +153,7 @@ function ProjectCard({ project, index, isFeatured = false }) {
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 text-sm font-medium text-text-muted hover:text-accent transition-colors focus-visible"
               aria-label={`View ${project.title} live`}
+              onClick={(e) => e.stopPropagation()}
             >
               <ExternalLink size={16} />
               Live Demo
@@ -135,6 +164,7 @@ function ProjectCard({ project, index, isFeatured = false }) {
               className="inline-flex items-center gap-2 text-sm font-medium text-text-subtle cursor-not-allowed"
               disabled
               aria-label="Repository URL not available"
+              onClick={(e) => e.stopPropagation()}
             >
               <GitBranch size={16} />
               Code
@@ -183,9 +213,13 @@ export function Projects() {
   const reducedMotion = useReducedMotion();
   const [projectsRef, isVisible] = useIntersectionObserver({ triggerOnce: true });
   const [additionalRef, additionalVisible] = useIntersectionObserver({ triggerOnce: true });
+  const [selectedProject, setSelectedProject] = useState(null);
 
   const featuredProjects = projects.filter((p) => p.featured);
   const regularProjects = projects.filter((p) => !p.featured);
+
+  const openModal = (project) => setSelectedProject(project);
+  const closeModal = () => setSelectedProject(null);
 
   return (
     <>
@@ -221,13 +255,14 @@ export function Projects() {
             aria-label="Main projects"
           >
             {featuredProjects.map((project, index) => (
-              <ProjectCard key={project.id} project={project} index={index} isFeatured />
+              <ProjectCard key={project.id} project={project} index={index} isFeatured onOpenModal={openModal} />
             ))}
             {regularProjects.map((project, index) => (
               <ProjectCard
                 key={project.id}
                 project={project}
                 index={index + featuredProjects.length}
+                onOpenModal={openModal}
               />
             ))}
           </div>
@@ -270,6 +305,9 @@ export function Projects() {
           </div>
         </div>
       </section>
+
+      {/* Project Modal */}
+      <ProjectModal project={selectedProject} isOpen={!!selectedProject} onClose={closeModal} />
     </>
   );
 }
