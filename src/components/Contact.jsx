@@ -1,5 +1,5 @@
 import { useIntersectionObserver, useReducedMotion } from "../hooks/useIntersectionObserver";
-import { Mail, GitBranch, MapPin } from "lucide-react";
+import { Mail, GitBranch, MapPin, Download } from "lucide-react";
 import { personalInfo } from "../data/portfolio";
 
 export function Contact() {
@@ -24,6 +24,19 @@ export function Contact() {
       icon: MapPin,
       action: () => window.open(personalInfo.mapsUrl, "_blank", "noopener,noreferrer"),
       ariaLabel: "View location on Google Maps",
+    },
+    {
+      label: "Download CV",
+      icon: Download,
+      action: () => {
+        const link = document.createElement('a');
+        link.href = '/Saad_CV.pdf';
+        link.download = 'Saad_CV.pdf';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+      },
+      ariaLabel: "Download CV",
     },
   ];
 
