@@ -26,5 +26,8 @@ dist-ssr
 # Claude Code local files
 .claude/
 
+#Picture
+profile.jpg
+
 #CV
 Saad_CV.pdf
