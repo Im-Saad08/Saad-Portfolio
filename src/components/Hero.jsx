@@ -1,5 +1,5 @@
 import { useIntersectionObserver, useReducedMotion } from "../hooks/useIntersectionObserver";
-import { ArrowRight, GitBranch, Mail, User } from "lucide-react";
+import { ArrowRight, GitBranch, Mail, User, Download } from "lucide-react";
 import { HeroBackground } from "./BackgroundEffects";
 import { personalInfo } from "../data/portfolio";
 
@@ -100,6 +100,14 @@ export function Hero() {
               className="inline-flex items-center gap-2 px-6 py-3.5 border border-border text-text font-medium rounded-lg hover:bg-border transition-colors focus-visible"
             >
               About Me
+            </a>
+            <a
+              href="/Saad_CV.pdf"
+              download="Saad_CV.pdf"
+              className="group inline-flex items-center gap-2 px-6 py-3.5 bg-accent-bg border border-accent-border text-accent font-medium rounded-lg hover:bg-accent/20 hover:border-accent transition-colors focus-visible"
+            >
+              <Download size={18} className="transition-transform group-hover:translate-x-1" />
+              Download CV
             </a>
             <a
               href={personalInfo.github}
