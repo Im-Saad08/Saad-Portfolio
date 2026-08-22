@@ -2,10 +2,11 @@ export const personalInfo = {
   name: "Saad",
   title: "Computer Engineering Student | AI & Computer Vision Enthusiast",
   tagline: "I build practical software and engineering systems at the intersection of programming, artificial intelligence, computer vision, data, and embedded technology.",
-  email: "YOUR_EMAIL@example.com",
-  github: "YOUR_GITHUB_URL",
+  email: "imsaad.work@gmail.com",
+  github: "https://github.com/Im-Saad08",
   linkedin: "YOUR_LINKEDIN_URL",
   location: "Islamabad, Pakistan",
+  mapsUrl: "https://www.google.com/maps/search/?api=1&query=Islamabad,Pakistan",
   university: "National University of Technology (NUTECH)",
   degree: "Computer Engineering Undergraduate",
 };
