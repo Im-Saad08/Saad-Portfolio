@@ -85,7 +85,13 @@ export const projects = [
     featured: true,
     githubUrl: "#",
     liveUrl: null,
-    image: null,
+    heroImage: "/projects/alpr-hero.jpg",
+    images: [
+      "/projects/alpr-1.jpg",
+      "/projects/alpr-2.jpg",
+      "/projects/alpr-3.jpg",
+    ],
+    videoUrl: null,
   },
   {
     id: 2,
@@ -97,7 +103,12 @@ export const projects = [
     featured: false,
     githubUrl: "#",
     liveUrl: null,
-    image: null,
+    heroImage: "/projects/ecg-hero.jpg",
+    images: [
+      "/projects/ecg-1.jpg",
+      "/projects/ecg-2.jpg",
+    ],
+    videoUrl: null,
   },
   {
     id: 3,
@@ -109,7 +120,13 @@ export const projects = [
     featured: false,
     githubUrl: "#",
     liveUrl: null,
-    image: null,
+    heroImage: "/projects/rpi-hero.jpg",
+    images: [
+      "/projects/rpi-1.jpg",
+      "/projects/rpi-2.jpg",
+      "/projects/rpi-3.jpg",
+    ],
+    videoUrl: null,
   },
   {
     id: 4,
@@ -121,7 +138,12 @@ export const projects = [
     featured: false,
     githubUrl: "#",
     liveUrl: null,
-    image: null,
+    heroImage: "/projects/traffic-hero.jpg",
+    images: [
+      "/projects/traffic-1.jpg",
+      "/projects/traffic-2.jpg",
+    ],
+    videoUrl: null,
   },
 ];
 
