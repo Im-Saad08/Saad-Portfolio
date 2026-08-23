@@ -1,6 +1,6 @@
 import { useIntersectionObserver, useReducedMotion } from "../hooks/useIntersectionObserver";
 import { Code, Eye, Brain, Database, BarChart, PieChart, Table, BookOpen, Terminal, GitBranch, Box, Settings, Cpu, Hand, ScanText, Image, Cable, Wrench } from "lucide-react";
-import { skills } from "../data/portfolio";
+import { skills, skillCategoryLabels, skillCategoryDescriptions } from "../data/portfolio";
 
 const categoryIcons = {
   programming: Code,
@@ -29,63 +29,6 @@ const skillIcons = {
   settings: Settings,
   cable: Cable,
   wrench: Wrench,
-};
-
-const categoryLabels = {
-  programming: "Programming",
-  aiComputerVision: "AI & Computer Vision",
-  dataScientific: "Data & Scientific Computing",
-  devTools: "Development & Tools",
-  embeddedSystems: "Embedded & Systems",
-};
-
-const categoryDescriptions = {
-  programming: "Core programming languages and hardware description",
-  aiComputerVision: "Computer vision, deep learning, and image analysis",
-  dataScientific: "Data analysis, scientific computing, and visualization",
-  devTools: "Development workflow, version control, and infrastructure",
-  embeddedSystems: "Microcontrollers, embedded Linux, and hardware interfaces",
-};
-
-const programmingLinks = {
-  Python: "https://www.python.org",
-  "C++": "https://isocpp.org",
-  C: "https://en.cppreference.com/w/c",
-  MATLAB: "https://www.mathworks.com/products/matlab.html",
-  Verilog: "https://www.chipverify.com/verilog/verilog-tutorial",
-};
-
-const aiComputerVisionLinks = {
-  OpenCV: "https://opencv.org",
-  "YOLOv8 / YOLO11n": "https://docs.ultralytics.com",
-  OCR: "https://tesseract-ocr.github.io",
-  "Image Processing": "https://scikit-image.org",
-  "Computer Vision": "https://paperswithcode.com/area/computer-vision",
-  TensorFlow: "https://www.tensorflow.org",
-  MediaPipe: "https://developers.google.com/mediapipe",
-};
-
-const dataScientificLinks = {
-  NumPy: "https://numpy.org",
-  SciPy: "https://scipy.org",
-  Matplotlib: "https://matplotlib.org",
-  "Jupyter Notebook": "https://jupyter.org",
-  Statistics: "https://scikit-learn.org/stable/",
-  "Data Analysis": "https://pandas.pydata.org",
-  "Power BI": "https://www.microsoft.com/en-us/power-platform/products/power-bi",
-  "Microsoft Excel": "https://www.microsoft.com/en-us/microsoft-365/excel",
-  SQL: "https://www.w3schools.com/sql/",
-  "MySQL / MySQL Workbench": "https://www.mysql.com/products/workbench/",
-  PostgreSQL: "https://www.postgresql.org",
-};
-
-const devToolsLinks = {
-  Git: "https://git-scm.com",
-  GitHub: "https://github.com",
-  "VS Code": "https://code.visualstudio.com",
-  Linux: "https://www.kernel.org",
-  Ubuntu: "https://ubuntu.com",
-  Docker: "https://www.docker.com",
 };
 
 export function Skills() {
@@ -138,27 +81,15 @@ export function Skills() {
                   })()}
                 </div>
                 <div>
-                  <h3 className="text-xl font-medium text-text">{categoryLabels[categoryKey]}</h3>
-                  <p className="text-sm text-text-muted">{categoryDescriptions[categoryKey]}</p>
+                  <h3 className="text-xl font-medium text-text">{skillCategoryLabels[categoryKey]}</h3>
+                  <p className="text-sm text-text-muted">{skillCategoryDescriptions[categoryKey]}</p>
                 </div>
               </div>
 
-              <div className="flex flex-wrap gap-3 entrance-wrapper" role="list" aria-label={`${categoryLabels[categoryKey]} skills`}>
+              <div className="flex flex-wrap gap-3 entrance-wrapper" role="list" aria-label={`${skillCategoryLabels[categoryKey]} skills`}>
                 {skillList.map((skill, skillIndex) => {
                   const Icon = skillIcons[skill.icon] || Code;
-                  const isProgramming = categoryKey === "programming";
-                  const isAIComputerVision = categoryKey === "aiComputerVision";
-                  const isDataScientific = categoryKey === "dataScientific";
-                  const isDevTools = categoryKey === "devTools";
-                  const linkUrl = isProgramming
-                    ? programmingLinks[skill.name]
-                    : isAIComputerVision
-                      ? aiComputerVisionLinks[skill.name]
-                      : isDataScientific
-                        ? dataScientificLinks[skill.name]
-                        : isDevTools
-                          ? devToolsLinks[skill.name]
-                          : null;
+                  const linkUrl = skill.link;
 
                   const tagClasses = `group inline-flex items-center gap-2 px-4 py-2 rounded-xl border border-border bg-bg-elevated/50 hover:border-accent-border hover:bg-accent-bg hover:scale-105 transition-all duration-300 ${
                     isVisible ? "animate-card-entrance" : "opacity-0"
