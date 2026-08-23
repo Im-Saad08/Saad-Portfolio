@@ -55,13 +55,14 @@ function ProjectCard({ project, index, isFeatured = false, onOpenModal }) {
     <article
       ref={cardRef}
       onClick={() => onOpenModal(project)}
-      className={`group relative overflow-hidden rounded-2xl border border-border bg-bg-elevated/50 hover:border-accent-border hover:bg-accent-bg/30 transition-all duration-300 cursor-pointer ${
+      className={`group relative rounded-2xl border border-border bg-bg-elevated/50 hover:border-accent-border hover:bg-accent-bg/30 transition-all duration-300 cursor-pointer ${
         isFeatured
           ? "md:col-span-2 lg:col-span-3"
           : "md:col-span-1"
       } ${isVisible ? "animate-card-entrance" : "opacity-0"}`}
       style={{
         animationDelay: reducedMotion ? "0ms" : `${index * 120}ms`,
+        minHeight: 0,
       }}
       role="button"
       tabIndex={0}
@@ -72,7 +73,7 @@ function ProjectCard({ project, index, isFeatured = false, onOpenModal }) {
 
       {/* Hero Image */}
       {hasHeroImage && (
-        <div className="relative h-48 md:h-56 overflow-hidden">
+        <div className="relative min-h-[192px] md:min-h-[224px] overflow-hidden">
           <img
             src={project.heroImage}
             alt={`${project.title} - Project preview`}
@@ -89,10 +90,10 @@ function ProjectCard({ project, index, isFeatured = false, onOpenModal }) {
         </div>
       )}
 
-      <div className="relative p-6 md:p-8 h-full flex flex-col">
-        <div className="flex items-start justify-between gap-4 mb-4">
-          <div className="flex items-center gap-2">
-            <div className="w-10 h-10 rounded-xl bg-accent-bg border border-accent-border flex items-center justify-center">
+      <div className="relative p-6 md:p-8 flex flex-col">
+        <div className="flex items-start justify-between gap-4 mb-4 flex-shrink-0">
+          <div className="flex items-center gap-2 flex-shrink-0">
+            <div className="w-10 h-10 rounded-xl bg-accent-bg border border-accent-border flex items-center justify-center flex-shrink-0">
               <CategoryIcon size={20} className="text-accent" aria-hidden="true" />
             </div>
             <span className="text-xs font-medium text-accent uppercase tracking-wider hidden sm:block">
@@ -100,21 +101,21 @@ function ProjectCard({ project, index, isFeatured = false, onOpenModal }) {
             </span>
           </div>
           {project.featured && (
-            <span className="px-2.5 py-1 text-xs font-medium text-accent bg-accent-bg border border-accent-border rounded-full whitespace-nowrap">
+            <span className="px-2.5 py-1 text-xs font-medium text-accent bg-accent-bg border border-accent-border rounded-full whitespace-nowrap flex-shrink-0">
               Featured
             </span>
           )}
         </div>
 
-        <h3 className="text-xl md:text-2xl font-semibold text-text mb-3 group-hover:text-accent transition-colors">
+        <h3 className="text-xl md:text-2xl font-semibold text-text mb-3 group-hover:text-accent transition-colors flex-shrink-0">
           {project.title}
         </h3>
 
-        <p className="text-text-muted leading-relaxed mb-6 flex-1">
+        <p className="text-text-muted leading-relaxed mb-6 flex-shrink-0">
           {project.description}
         </p>
 
-        <div className="flex flex-wrap gap-2 mb-6" role="list" aria-label="Technologies">
+        <div className="flex flex-wrap gap-2 mb-6 flex-shrink-0" role="list" aria-label="Technologies">
           {project.technologies.slice(0, 8).map((tech) => (
             <span
               key={tech}
@@ -132,7 +133,7 @@ function ProjectCard({ project, index, isFeatured = false, onOpenModal }) {
           )}
         </div>
 
-        <div className="flex items-center gap-4 pt-4 border-t border-border">
+        <div className="flex items-center gap-4 pt-4 border-t border-border flex-shrink-0">
           {project.githubUrl && project.githubUrl !== "#" && (
             <a
               href={project.githubUrl}
@@ -250,7 +251,7 @@ export function Projects() {
           </header>
 
           <div
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 entrance-wrapper"
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 entrance-wrapper items-start"
             role="list"
             aria-label="Main projects"
           >
@@ -295,7 +296,7 @@ export function Projects() {
           </header>
 
           <div
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 entrance-wrapper"
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 entrance-wrapper items-start"
             role="list"
             aria-label="Additional projects"
           >
