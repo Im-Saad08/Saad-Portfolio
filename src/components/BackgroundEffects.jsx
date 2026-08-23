@@ -9,8 +9,8 @@ export function GridBackground() {
       aria-hidden="true"
       style={{
         backgroundImage: `
-          linear-gradient(rgba(0, 212, 170, 0.03) 1px, transparent 1px),
-          linear-gradient(90deg, rgba(0, 212, 170, 0.03) 1px, transparent 1px)
+          linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px)
         `,
         backgroundSize: "40px 40px",
       }}
@@ -20,8 +20,8 @@ export function GridBackground() {
           className="absolute inset-0"
           style={{
             backgroundImage: `
-              linear-gradient(rgba(0, 212, 170, 0.02) 1px, transparent 1px),
-              linear-gradient(90deg, rgba(0, 212, 170, 0.02) 1px, transparent 1px)
+              linear-gradient(rgba(56, 189, 248, 0.06) 1px, transparent 1px),
+              linear-gradient(90deg, rgba(56, 189, 248, 0.06) 1px, transparent 1px)
             `,
             backgroundSize: "40px 40px",
             animation: "grid-move 20s linear infinite",
@@ -51,12 +51,13 @@ export function FloatingParticles() {
       {particles.map((p) => (
         <div
           key={p.id}
-          className="absolute rounded-full bg-accent/20"
+          className="absolute rounded-full"
           style={{
             left: p.left,
             top: p.top,
             width: p.size,
             height: p.size,
+            background: `rgba(56, 189, 248, ${0.1 + Math.random() * 0.15})`,
             animation: `float ${p.duration} ease-in-out infinite`,
             animationDelay: p.delay,
           }}
@@ -73,9 +74,9 @@ export function CircuitPattern() {
       aria-hidden="true"
       style={{
         backgroundImage: `
-          radial-gradient(circle at 20% 20%, rgba(0, 212, 170, 0.03) 0%, transparent 50%),
-          radial-gradient(circle at 80% 80%, rgba(0, 212, 170, 0.02) 0%, transparent 50%),
-          radial-gradient(circle at 40% 60%, rgba(0, 212, 170, 0.015) 0%, transparent 40%)
+          radial-gradient(circle at 20% 20%, rgba(56, 189, 248, 0.06) 0%, transparent 50%),
+          radial-gradient(circle at 80% 80%, rgba(56, 189, 248, 0.04) 0%, transparent 50%),
+          radial-gradient(circle at 40% 60%, rgba(56, 189, 248, 0.03) 0%, transparent 40%)
         `,
       }}
     />
@@ -92,8 +93,8 @@ export function HeroBackground() {
         className="absolute inset-0"
         style={{
           background: `
-            radial-gradient(ellipse at 50% 0%, rgba(0, 212, 170, 0.08) 0%, transparent 60%),
-            radial-gradient(ellipse at 100% 100%, rgba(0, 212, 170, 0.04) 0%, transparent 50%)
+            radial-gradient(ellipse at 50% 0%, rgba(56, 189, 248, 0.1) 0%, transparent 60%),
+            radial-gradient(ellipse at 100% 100%, rgba(56, 189, 248, 0.06) 0%, transparent 50%)
           `,
         }}
       />
