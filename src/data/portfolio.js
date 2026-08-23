@@ -31,7 +31,7 @@ export const skills = {
   ],
   aiComputerVision: [
     { name: "OpenCV", icon: "eye" },
-    { name: "YOLO / YOLOv8", icon: "eye" },
+    { name: "YOLOv8 / YOLO11n", icon: "eye" },
     { name: "OCR", icon: "scan-text" },
     { name: "Image Processing", icon: "image" },
     { name: "Computer Vision", icon: "eye" },
@@ -63,8 +63,6 @@ export const skills = {
   embeddedSystems: [
     { name: "Arduino", icon: "cpu" },
     { name: "Raspberry Pi", icon: "cpu" },
-    { name: "Buildroot", icon: "terminal" },
-    { name: "BusyBox", icon: "terminal" },
     { name: "PIC16F877A", icon: "cpu" },
     { name: "Intel 8051", icon: "cpu" },
     { name: "UART", icon: "cable" },
