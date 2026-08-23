@@ -1,44 +1,10 @@
 import { useIntersectionObserver, useReducedMotion } from "../hooks/useIntersectionObserver";
-import { Mail, GitBranch, MapPin, Download } from "lucide-react";
+import { Mail, GitBranch, MapPin, Download, Send, ExternalLink } from "lucide-react";
 import { personalInfo } from "../data/portfolio";
 
 export function Contact() {
   const reducedMotion = useReducedMotion();
   const [contactRef, isVisible] = useIntersectionObserver({ triggerOnce: true });
-
-  const contactButtons = [
-    {
-      label: "Email",
-      icon: Mail,
-      action: () => window.open(`https://mail.google.com/mail/?view=cm&fs=1&to=${personalInfo.email}`, "_blank", "noopener,noreferrer"),
-      ariaLabel: "Send email via Gmail",
-    },
-    {
-      label: "GitHub",
-      icon: GitBranch,
-      action: () => window.open(personalInfo.github, "_blank", "noopener,noreferrer"),
-      ariaLabel: "View GitHub profile",
-    },
-    {
-      label: "Location",
-      icon: MapPin,
-      action: () => window.open(personalInfo.mapsUrl, "_blank", "noopener,noreferrer"),
-      ariaLabel: "View location on Google Maps",
-    },
-    {
-      label: "Download CV",
-      icon: Download,
-      action: () => {
-        const link = document.createElement('a');
-        link.href = '/Saad_CV.pdf';
-        link.download = 'Saad_CV.pdf';
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-      },
-      ariaLabel: "Download CV",
-    },
-  ];
 
   return (
     <section
@@ -55,7 +21,7 @@ export function Contact() {
               isVisible ? "animate-text-reveal" : "opacity-0"
             }`}
           >
-            Get In Touch
+            Contact
           </h2>
           <p
             className={`text-lg text-text-muted max-w-2xl mx-auto ${
@@ -70,26 +36,90 @@ export function Contact() {
 
         <div className="max-w-2xl mx-auto">
           <div
-            className={`flex flex-wrap justify-center gap-3 entrance-wrapper ${
+            className={`flex flex-col sm:flex-row justify-center gap-4 entrance-wrapper ${
               isVisible ? "animate-in" : "opacity-0"
             }`}
             style={{ animationDelay: reducedMotion ? "0ms" : "250ms" }}
             role="list"
-            aria-label="Contact actions"
+            aria-label="Contact links"
           >
-            {contactButtons.map((btn) => (
-              <button
-                key={btn.label}
-                onClick={btn.action}
-                className="group inline-flex items-center gap-1.5 px-3 py-1.5 text-sm font-medium text-accent bg-accent-bg border border-accent-border rounded-lg hover:bg-accent/20 hover:scale-105 transition-all duration-300 focus-visible"
-                aria-label={btn.ariaLabel}
-                role="listitem"
-              >
-                <btn.icon size={14} aria-hidden="true" />
-                {btn.label}
-              </button>
-            ))}
+            <a
+              href={`mailto:${personalInfo.email}`}
+              className="group inline-flex items-center gap-2 px-6 py-3.5 bg-accent-bg border border-accent-border text-accent font-medium rounded-lg hover:bg-accent/20 hover:border-accent hover:scale-105 transition-all duration-300 focus-visible"
+              aria-label="Send email"
+              role="listitem"
+            >
+              <Mail size={18} className="transition-transform group-hover:translate-x-1" />
+              <span>Email</span>
+              <Send size={16} className="opacity-0 group-hover:opacity-100 transition-opacity" />
+            </a>
+            <a
+              href={personalInfo.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group inline-flex items-center gap-2 px-6 py-3.5 border border-border text-text font-medium rounded-lg hover:bg-border hover:scale-105 transition-all duration-300 focus-visible"
+              aria-label="View GitHub profile"
+              role="listitem"
+            >
+              <GitBranch size={18} />
+              <span>GitHub</span>
+              <ExternalLink size={16} className="opacity-0 group-hover:opacity-100 transition-opacity" />
+            </a>
           </div>
+
+          {/* Secondary actions */}
+          <div
+            className={`mt-8 flex flex-wrap justify-center gap-3 entrance-wrapper ${
+              isVisible ? "animate-in" : "opacity-0"
+            }`}
+            style={{ animationDelay: reducedMotion ? "0ms" : "400ms" }}
+            role="list"
+            aria-label="Additional contact actions"
+          >
+            <a
+              href={personalInfo.mapsUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group inline-flex items-center gap-2 px-4 py-2 text-sm font-medium text-text-muted bg-bg-elevated/50 border border-border rounded-lg hover:bg-accent-bg hover:border-accent-border hover:text-accent transition-all duration-300 focus-visible"
+              aria-label="View location on Google Maps"
+              role="listitem"
+            >
+              <MapPin size={14} />
+              <span className="hidden sm:inline">Location</span>
+            </a>
+            <a
+              href="/Saad_CV.pdf"
+              download="Saad_CV.pdf"
+              className="group inline-flex items-center gap-2 px-4 py-2 text-sm font-medium text-text-muted bg-bg-elevated/50 border border-border rounded-lg hover:bg-accent-bg hover:border-accent-border hover:text-accent transition-all duration-300 focus-visible"
+              aria-label="Download CV"
+              role="listitem"
+            >
+              <Download size={14} />
+              <span className="hidden sm:inline">Download CV</span>
+            </a>
+          </div>
+        </div>
+
+        <div
+          className={`mt-16 p-6 rounded-xl border border-border bg-bg-elevated/30 text-center ${
+            isVisible ? "animate-reveal-up" : "opacity-0"
+          }`}
+          style={{ animationDelay: reducedMotion ? "0ms" : "600ms" }}
+        >
+          <p className="text-text-muted mb-2">
+            Email and GitHub are the best ways to reach me. I try to respond within a few days.
+          </p>
+          <p className="text-sm text-text-subtle">
+            {personalInfo.email} ·{" "}
+            <a
+              href={personalInfo.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-accent hover:underline"
+            >
+              {personalInfo.github}
+            </a>
+          </p>
         </div>
       </div>
     </section>
