@@ -1,7 +1,17 @@
 import { useIntersectionObserver, useReducedMotion } from "../hooks/useIntersectionObserver";
-import { ArrowRight, GitBranch, Mail, User, Download } from "lucide-react";
+import { ArrowRight, GitBranch, Mail, User, Download, Calendar, BookOpen, Eye, Wrench, Database, PenLine, Users, CheckCircle } from "lucide-react";
 import { HeroBackground } from "./BackgroundEffects";
-import { personalInfo } from "../data/portfolio";
+import { personalInfo, homeIntro } from "../data/portfolio";
+
+const currentlyIcons = {
+  Calendar,
+  BookOpen,
+  Eye,
+  Wrench,
+  Database,
+  PenLine,
+  Users,
+};
 
 export function Hero() {
   const reducedMotion = useReducedMotion();
@@ -68,7 +78,7 @@ export function Hero() {
             }`}
             style={{ animationDelay: reducedMotion ? "0ms" : "450ms" }}
           >
-            Computer Engineering Student | AI & Computer Vision Enthusiast
+            {homeIntro.tagline}
           </p>
 
           <p
@@ -77,29 +87,54 @@ export function Hero() {
             }`}
             style={{ animationDelay: reducedMotion ? "0ms" : "550ms" }}
           >
-            I build practical software and engineering systems at the intersection of
-            programming, artificial intelligence, computer vision, data, and embedded
-            technology.
+            {homeIntro.intro}
           </p>
+
+          {/* Currently preview */}
+          <div
+            className={`mt-4 mb-12 p-6 md:p-8 rounded-2xl border border-border bg-bg-elevated/50 text-left max-w-2xl mx-auto ${
+              isVisible ? "animate-reveal-up" : "opacity-0"
+            }`}
+            style={{ animationDelay: reducedMotion ? "0ms" : "600ms" }}
+          >
+            <div className="flex items-center gap-2 mb-4">
+              <div className="w-8 h-8 rounded-lg bg-accent-bg border border-accent-border flex items-center justify-center">
+                <Calendar size={18} className="text-accent" aria-hidden="true" />
+              </div>
+              <h3 className="text-lg font-medium text-text">{homeIntro.currently.heading}</h3>
+            </div>
+            <ul className="space-y-2 text-left" role="list" aria-label={homeIntro.currently.heading}>
+              {homeIntro.currently.items.map((item, index) => (
+                <li
+                  key={index}
+                  className="flex items-start gap-3 text-text-muted leading-relaxed"
+                  style={{ animationDelay: reducedMotion ? "0ms" : `${650 + index * 80}ms` }}
+                >
+                  <CheckCircle size={16} className="text-accent/70 flex-shrink-0 mt-0.5" aria-hidden="true" />
+                  <span>{item.text}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
 
           <div
             className={`flex flex-col sm:flex-row items-center justify-center gap-4 ${
               isVisible ? "animate-stagger-in" : "opacity-0"
             }`}
-            style={{ animationDelay: reducedMotion ? "0ms" : "650ms" }}
+            style={{ animationDelay: reducedMotion ? "0ms" : "800ms" }}
           >
             <a
-              href="#projects"
+              href="#work"
               className="group inline-flex items-center gap-2 px-6 py-3.5 bg-accent text-bg font-medium rounded-lg hover:bg-accent-dim transition-colors focus-visible"
             >
-              View Projects
+              View Work
               <ArrowRight size={18} className="transition-transform group-hover:translate-x-1" />
             </a>
             <a
-              href="#about"
+              href="#story"
               className="inline-flex items-center gap-2 px-6 py-3.5 border border-border text-text font-medium rounded-lg hover:bg-border transition-colors focus-visible"
             >
-              About Me
+              Read Story
             </a>
             <a
               href="/Saad_CV.pdf"
@@ -124,7 +159,7 @@ export function Hero() {
             className={`mt-16 flex items-center justify-center gap-8 text-text-muted ${
               isVisible ? "animate-stagger-in" : "opacity-0"
             }`}
-            style={{ animationDelay: reducedMotion ? "0ms" : "800ms" }}
+            style={{ animationDelay: reducedMotion ? "0ms" : "950ms" }}
           >
             <a
               href={`mailto:${personalInfo.email}`}
@@ -143,16 +178,6 @@ export function Hero() {
             >
               <GitBranch size={16} />
               <span className="hidden sm:inline">GitHub</span>
-            </a>
-            <a
-              href={personalInfo.linkedin}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-2 text-sm hover:text-text transition-colors focus-visible"
-              aria-label="LinkedIn"
-            >
-              <User size={16} />
-              <span className="hidden sm:inline">LinkedIn</span>
             </a>
           </div>
         </div>
