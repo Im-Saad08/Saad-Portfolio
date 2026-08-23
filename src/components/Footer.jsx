@@ -1,5 +1,5 @@
 import { useIntersectionObserver } from "../hooks/useIntersectionObserver";
-import { GitBranch, User, Mail, Heart, Code2 } from "lucide-react";
+import { GitBranch, Mail, Heart, Code2 } from "lucide-react";
 import { personalInfo, navItems } from "../data/portfolio";
 
 export function Footer() {
@@ -18,8 +18,8 @@ export function Footer() {
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="flex items-center gap-2 text-text-muted text-sm">
             <Code2 size={16} className="text-accent" aria-hidden="true" />
-            <span className="font-medium text-text">Saad</span>
-            <span className="hidden sm:inline">— Computer Engineering Student</span>
+            <span className="font-medium text-text">MOHTARM SAAD</span>
+            <span className="hidden sm:inline">— {personalInfo.domain}</span>
           </div>
 
           <nav className="flex flex-wrap items-center justify-center gap-6" aria-label="Footer navigation">
@@ -51,21 +51,12 @@ export function Footer() {
             >
               <GitBranch size={18} />
             </a>
-            <a
-              href={personalInfo.linkedin}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="p-2 rounded-lg text-text-muted hover:text-text hover:bg-border transition-colors focus-visible"
-              aria-label="LinkedIn"
-            >
-              <User size={18} />
-            </a>
           </div>
         </div>
 
         <div className="mt-8 pt-8 border-t border-border flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-sm text-text-subtle text-center md:text-left">
-            © {currentYear} Saad. Built with React, Vite & Tailwind CSS.
+            © {currentYear} MOHTARM SAAD. Built with React, Vite & Tailwind CSS.
           </p>
           <p className="text-sm text-text-subtle text-center md:text-right flex items-center justify-center md:justify-end gap-1.5">
             Crafted with

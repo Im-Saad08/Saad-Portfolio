@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { navItems } from "../data/portfolio";
-import { Menu, X, ChevronDown } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { useScrollPosition } from "../hooks/useIntersectionObserver";
 
 export function Navbar() {
@@ -30,8 +30,9 @@ export function Navbar() {
             href="#home"
             className="font-semibold text-lg text-text tracking-tight focus-visible"
             onClick={closeMenu}
+            aria-label="Go to homepage"
           >
-            Saad
+            MOHTARM SAAD
           </a>
 
           <div className="hidden md:flex items-center gap-8">
