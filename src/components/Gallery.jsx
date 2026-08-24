@@ -1,11 +1,14 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
+import { createPortal } from "react-dom";
 import { X, ChevronLeft, ChevronRight, Expand } from "lucide-react";
 
 export function Gallery({ images = [], title, className = "" }) {
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [lightboxIndex, setLightboxIndex] = useState(0);
+  const scrollRef = useRef(null);
 
   const openLightbox = (index) => {
+    console.log('Image clicked', index);
     setLightboxIndex(index);
     setLightboxOpen(true);
     document.body.style.overflow = "hidden";
@@ -22,6 +25,18 @@ export function Gallery({ images = [], title, className = "" }) {
 
   const prevImage = () => {
     setLightboxIndex((prev) => (prev - 1 + images.length) % images.length);
+  };
+
+  const scrollLeft = () => {
+    if (scrollRef.current) {
+      scrollRef.current.scrollBy({ left: -320, behavior: "smooth" });
+    }
+  };
+
+  const scrollRight = () => {
+    if (scrollRef.current) {
+      scrollRef.current.scrollBy({ left: 320, behavior: "smooth" });
+    }
   };
 
   useEffect(() => {
@@ -46,49 +61,81 @@ export function Gallery({ images = [], title, className = "" }) {
             {title}
           </h4>
         )}
-        <div
-          className="grid grid-cols-2 md:grid-cols-3 gap-3"
-          role="list"
-          aria-label={`${title || "Image"} gallery`}
-        >
-          {images.map((item, index) => (
-            <button
-              key={index}
-              onClick={() => openLightbox(index)}
-              className="relative aspect-[4/3] rounded-xl overflow-hidden bg-bg-elevated border border-border group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg"
-              role="listitem"
-              aria-label={`View ${item.caption || `image ${index + 1}`}`}
-            >
-              <img
-                src={item.image}
-                alt={item.caption || `Gallery image ${index + 1}`}
-                className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-[1.03]"
-                loading="lazy"
-              />
-              {/* Gradient overlay with caption on hover */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" aria-hidden="true" />
-              {item.caption && (
-                <div className="absolute bottom-0 left-0 right-0 p-3 text-white text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300 translate-y-full group-hover:translate-y-0">
-                  {item.caption}
+        {/* Compact thumbnail carousel — single horizontal scrollable row */}
+        <div className="relative">
+          <div
+            ref={scrollRef}
+            className="flex flex-row overflow-x-auto gap-3 py-2 scrollbar-thin snap-x"
+            role="list"
+            aria-label={`${title || "Image"} gallery`}
+            style={{
+              scrollbarWidth: "thin",
+              scrollbarColor: "rgba(0, 212, 170, 0.3) transparent",
+              scrollSnapType: "x proximity",
+              WebkitOverflowScrolling: "touch",
+            }}
+          >
+            {images.map((item, index) => (
+              <button
+                key={index}
+                onClick={() => openLightbox(index)}
+                className="relative h-44 max-h-52 aspect-video min-w-[220px] max-w-[260px] flex-shrink-0 snap-start cursor-pointer rounded-lg overflow-hidden bg-bg-elevated border border-border group hover:border-accent-border transition-colors duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg"
+                role="listitem"
+                aria-label={`View ${item.caption || `image ${index + 1}`}`}
+              >
+                <img
+                  src={item.image}
+                  alt={item.caption || `Gallery image ${index + 1}`}
+                  className="object-cover w-full h-full rounded-lg hover:scale-105 transition-transform duration-300 pointer-events-none"
+                  loading="lazy"
+                />
+                {/* Gradient overlay with caption on hover */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" aria-hidden="true" />
+                {item.caption && (
+                  <div className="absolute bottom-0 left-0 right-0 p-2 text-white text-xs font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none line-clamp-2">
+                    {item.caption}
+                  </div>
+                )}
+                {/* Expand icon hint */}
+                <div className="absolute top-2 right-2 w-6 h-6 rounded-full bg-black/50 backdrop-blur-sm flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" aria-hidden="true">
+                  <Expand size={12} className="text-white" />
                 </div>
-              )}
-              {/* Expand icon hint */}
-              <div className="absolute top-2 right-2 w-8 h-8 rounded-full bg-black/50 backdrop-blur-sm flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300" aria-hidden="true">
-                <Expand size={14} className="text-white" />
-              </div>
-            </button>
-          ))}
+              </button>
+            ))}
+          </div>
+
+          {/* Compact overlay navigation arrows — 36px circular buttons */}
+          {images.length > 1 && (
+            <>
+              <button
+                onClick={scrollLeft}
+                className="w-9 h-9 absolute left-1 top-1/2 -translate-y-1/2 z-10 flex items-center justify-center rounded-full bg-slate-900/80 backdrop-blur border border-slate-700 text-white/80 hover:text-white hover:bg-slate-900 hover:border-accent/50 transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent shadow-lg shadow-black/30"
+                aria-label="Scroll gallery left"
+              >
+                <ChevronLeft size={16} />
+              </button>
+              <button
+                onClick={scrollRight}
+                className="w-9 h-9 absolute right-1 top-1/2 -translate-y-1/2 z-10 flex items-center justify-center rounded-full bg-slate-900/80 backdrop-blur border border-slate-700 text-white/80 hover:text-white hover:bg-slate-900 hover:border-accent/50 transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent shadow-lg shadow-black/30"
+                aria-label="Scroll gallery right"
+              >
+                <ChevronRight size={16} />
+              </button>
+            </>
+          )}
         </div>
       </div>
 
       {/* Lightbox Modal */}
-      {lightboxOpen && images.length > 0 && (
+      {lightboxOpen && images.length > 0 && createPortal(
         <div
           className="fixed inset-0 z-50 flex items-center justify-center bg-black/95 backdrop-blur-sm"
           role="dialog"
           aria-modal="true"
           aria-label="Image lightbox"
+          onClick={closeLightbox}
         >
+          <div className="absolute inset-0" aria-hidden="true" />
           {/* Close button */}
           <button
             onClick={closeLightbox}
@@ -98,28 +145,28 @@ export function Gallery({ images = [], title, className = "" }) {
             <X size={24} />
           </button>
 
-          {/* Navigation arrows */}
+          {/* Navigation arrows — compact 36px circular buttons */}
           {images.length > 1 && (
             <>
               <button
                 onClick={prevImage}
-                className="absolute left-6 z-10 p-3 rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent hidden md:block"
+                className="absolute left-4 z-10 w-9 h-9 flex items-center justify-center rounded-full bg-slate-900/80 backdrop-blur border border-slate-700 text-white/80 hover:text-white hover:bg-slate-900 hover:border-accent/50 transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent shadow-lg shadow-black/30 hidden md:block"
                 aria-label="Previous image"
               >
-                <ChevronLeft size={28} />
+                <ChevronLeft size={20} />
               </button>
               <button
                 onClick={nextImage}
-                className="absolute right-6 z-10 p-3 rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent hidden md:block"
+                className="absolute right-4 z-10 w-9 h-9 flex items-center justify-center rounded-full bg-slate-900/80 backdrop-blur border border-slate-700 text-white/80 hover:text-white hover:bg-slate-900 hover:border-accent/50 transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent shadow-lg shadow-black/30 hidden md:block"
                 aria-label="Next image"
               >
-                <ChevronRight size={28} />
+                <ChevronRight size={20} />
               </button>
             </>
           )}
 
           {/* Main image */}
-          <div className="relative max-w-[90vw] max-h-[85vh]">
+          <div className="relative max-w-[90vw] max-h-[85vh]" onClick={(e) => e.stopPropagation()}>
             <img
               src={images[lightboxIndex].image}
               alt={images[lightboxIndex].caption || `Image ${lightboxIndex + 1}`}
@@ -139,7 +186,7 @@ export function Gallery({ images = [], title, className = "" }) {
             </div>
           )}
         </div>
-      )}
+      , document.body)}
     </>
   );
 }
