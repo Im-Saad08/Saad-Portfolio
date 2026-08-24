@@ -184,27 +184,40 @@ function AdditionalProjectCard({ project, index }) {
   return (
     <article
       ref={cardRef}
-      className={`group p-5 rounded-xl border border-border bg-bg-elevated/50 hover:border-accent-border hover:bg-accent-bg/50 hover:scale-[1.02] hover:-translate-y-1 transition-all duration-300 ${
+      className={`group flex flex-col h-full overflow-hidden rounded-xl border border-border bg-bg-elevated/50 hover:border-accent-border hover:bg-accent-bg/50 hover:scale-[1.02] hover:-translate-y-1 transition-all duration-300 ${
         isVisible ? "animate-card-entrance" : "opacity-0"
       }`}
       style={{ animationDelay: reducedMotion ? "0ms" : `${index * 100}ms` }}
     >
-      <h4 className="text-lg font-medium text-text mb-2 group-hover:text-accent transition-colors">
-        {project.title}
-      </h4>
-      <p className="text-sm text-text-muted mb-3 leading-relaxed">
-        {project.description}
-      </p>
-      <div className="flex flex-wrap gap-2" role="list" aria-label="Technologies">
-        {project.technologies.map((tech) => (
-          <span
-            key={tech}
-            className="px-2.5 py-1 text-xs font-medium text-text-muted bg-bg border border-border rounded"
-            role="listitem"
-          >
-            {tech}
-          </span>
-        ))}
+      {/* Image preview */}
+      <div className="relative aspect-video overflow-hidden rounded-t-lg">
+        <img
+          src={project.image}
+          alt={`${project.title} - Project preview`}
+          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+          loading="lazy"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-bg/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" aria-hidden="true" />
+      </div>
+
+      <div className="flex flex-col flex-grow p-4">
+        <h4 className="text-base font-semibold text-text mb-1.5 group-hover:text-accent transition-colors leading-snug">
+          {project.title}
+        </h4>
+        <p className="text-sm text-text-muted mb-3 leading-relaxed">
+          {project.description}
+        </p>
+        <div className="flex flex-wrap gap-1.5 mt-auto" role="list" aria-label="Technologies">
+          {project.technologies.map((tech) => (
+            <span
+              key={tech}
+              className="px-2 py-0.5 text-xs font-medium text-text-muted bg-bg border border-border rounded-md whitespace-nowrap"
+              role="listitem"
+            >
+              {tech}
+            </span>
+          ))}
+        </div>
       </div>
     </article>
   );
@@ -296,7 +309,7 @@ export function Projects() {
           </header>
 
           <div
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 entrance-wrapper items-start"
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 entrance-wrapper items-stretch"
             role="list"
             aria-label="Additional projects"
           >

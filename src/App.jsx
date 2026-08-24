@@ -6,6 +6,7 @@ import { Work } from "./components/Work";
 import { Now } from "./components/Now";
 import { Notes } from "./components/Notes";
 import { Life } from "./components/Life";
+import { Education } from "./components/Education";
 import { Timeline } from "./components/Timeline";
 import { Contact } from "./components/Contact";
 import { Footer } from "./components/Footer";
@@ -22,6 +23,7 @@ function App() {
         <Now />
         <Notes />
         <Life />
+        <Education />
         <Timeline />
         <Contact />
       </main>
