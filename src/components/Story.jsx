@@ -7,8 +7,6 @@ import {
   Cpu,
   Server,
   Microscope,
-  Users,
-  Heart,
   Layers,
   HardDrive,
   BookOpen,
@@ -39,40 +37,11 @@ const journeyLayerMeta = {
   "AI & Computer Vision": { icon: Brain, description: "Deep learning, computer vision, and intelligent systems" },
 };
 
-const categoryIcons = {
-  programming: Code,
-  aiComputerVision: Brain,
-  dataScientific: Database,
-  devTools: Server,
-  embeddedSystems: Cpu,
-};
-
-const skillIcons = {
-  code: Code,
-  cpu: Cpu,
-  eye: Eye,
-  scanText: ScanText,
-  image: Image,
-  brain: Brain,
-  hand: Hand,
-  database: Database,
-  barChart: BarChart,
-  bookOpen: BookOpen,
-  table: Table,
-  pieChart: PieChart,
-  gitBranch: GitBranch,
-  terminal: Terminal,
-  box: Box,
-  settings: Settings,
-  cable: Cable,
-  wrench: Wrench,
-};
 
 export function Story() {
   const reducedMotion = useReducedMotion();
   const [storyRef, isVisible] = useIntersectionObserver({ triggerOnce: true });
   const [journeyRef, journeyVisible] = useIntersectionObserver({ triggerOnce: true });
-  const [skillsRef, skillsVisible] = useIntersectionObserver({ triggerOnce: true });
   const [selectedIndex, setSelectedIndex] = useState(null);
   const [hoveredIndex, setHoveredIndex] = useState(null);
 
@@ -321,7 +290,6 @@ export function Story() {
       </section>
 
       <section
-        ref={skillsRef}
         className="py-20 md:py-28 border-t border-border"
         aria-labelledby="skills-story-heading"
       >
@@ -329,34 +297,28 @@ export function Story() {
           <header className="text-center mb-16">
             <h2
               id="skills-story-heading"
-              className={`text-3xl md:text-4xl font-semibold tracking-tight text-text mb-4 ${
-                skillsVisible ? "animate-text-reveal" : "opacity-0"
-              }`}
+              className="text-3xl md:text-4xl font-semibold tracking-tight text-text mb-4"
             >
               Skills — Organized by Domain
             </h2>
-            <p
-              className={`text-lg text-text-muted max-w-2xl mx-auto ${
-                skillsVisible ? "animate-text-reveal-stagger" : "opacity-0"
-              }`}
-              style={{ animationDelay: reducedMotion ? "0ms" : "150ms" }}
-            >
+            <p className="text-lg text-text-muted max-w-2xl mx-auto">
               Clean tags with real links — no fake progress bars
             </p>
           </header>
 
           <div className="space-y-12">
             {Object.entries(skills).map(([categoryKey, skillList], catIndex) => (
-              <div
-                key={categoryKey}
-                className={`${
-                  skillsVisible ? "animate-reveal-up" : "opacity-0"
-                }`}
-                style={{ animationDelay: reducedMotion ? "0ms" : `${catIndex * 200}ms` }}
-              >
+              <div key={categoryKey}>
                 <div className="flex items-center gap-3 mb-6">
                   <div className="w-10 h-10 rounded-lg bg-accent-bg border border-accent-border flex items-center justify-center group-hover:scale-105 transition-transform duration-300">
                     {(() => {
+                      const categoryIcons = {
+                        programming: Code,
+                        aiComputerVision: Brain,
+                        dataScientific: Database,
+                        devTools: Server,
+                        embeddedSystems: Cpu,
+                      };
                       const Icon = categoryIcons[categoryKey];
                       return <Icon size={20} className="text-accent" aria-hidden="true" />;
                     })()}
@@ -369,12 +331,30 @@ export function Story() {
 
                 <div className="flex flex-wrap gap-3 entrance-wrapper" role="list" aria-label={`${skillCategoryLabels[categoryKey]} skills`}>
                   {skillList.map((skill, skillIndex) => {
+                    const skillIcons = {
+                      code: Code,
+                      cpu: Cpu,
+                      eye: Eye,
+                      scanText: ScanText,
+                      image: Image,
+                      brain: Brain,
+                      hand: Hand,
+                      database: Database,
+                      barChart: BarChart,
+                      bookOpen: BookOpen,
+                      table: Table,
+                      pieChart: PieChart,
+                      gitBranch: GitBranch,
+                      terminal: Terminal,
+                      box: Box,
+                      settings: Settings,
+                      cable: Cable,
+                      wrench: Wrench,
+                    };
                     const Icon = skillIcons[skill.icon] || Code;
                     const linkUrl = skill.link;
 
-                    const tagClasses = `group inline-flex items-center gap-2 px-4 py-2 rounded-xl border border-border bg-bg-elevated/50 hover:border-accent-border hover:bg-accent-bg hover:scale-105 transition-all duration-300 ${
-                      skillsVisible ? "animate-card-entrance" : "opacity-0"
-                    }`;
+                    const tagClasses = `group inline-flex items-center gap-2 px-4 py-2 rounded-xl border border-border bg-bg-elevated/50 hover:border-accent-border hover:bg-accent-bg hover:scale-105 transition-all duration-300`;
 
                     const linkClasses = linkUrl
                       ? "cursor-pointer hover:shadow-lg hover:shadow-accent/10 focus-visible outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg"
@@ -388,7 +368,6 @@ export function Story() {
                           target="_blank"
                           rel="noopener noreferrer"
                           className={`${tagClasses} ${linkClasses}`}
-                          style={{ animationDelay: reducedMotion ? "0ms" : `${catIndex * 150 + skillIndex * 40}ms` }}
                           role="listitem"
                           aria-label={`View ${skill.name} documentation`}
                         >
@@ -402,7 +381,6 @@ export function Story() {
                       <span
                         key={skill.name}
                         className={tagClasses}
-                        style={{ animationDelay: reducedMotion ? "0ms" : `${catIndex * 150 + skillIndex * 40}ms` }}
                         role="listitem"
                       >
                         <Icon size={14} className="text-accent/80 group-hover:text-accent transition-colors" aria-hidden="true" />
