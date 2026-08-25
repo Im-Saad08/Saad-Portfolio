@@ -100,27 +100,6 @@ export function Contact() {
           </div>
         </div>
 
-        <div
-          className={`mt-16 p-6 rounded-xl border border-border bg-bg-elevated/30 text-center ${
-            isVisible ? "animate-reveal-up" : "opacity-0"
-          }`}
-          style={{ animationDelay: reducedMotion ? "0ms" : "600ms" }}
-        >
-          <p className="text-text-muted mb-2">
-            Email and GitHub are the best ways to reach me. I try to respond within a few days.
-          </p>
-          <p className="text-sm text-text-subtle">
-            {personalInfo.email} ·{" "}
-            <a
-              href={personalInfo.github}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-accent hover:underline"
-            >
-              {personalInfo.github}
-            </a>
-          </p>
-        </div>
       </div>
     </section>
   );
