@@ -9,23 +9,11 @@ import {
   Microscope,
   Layers,
   HardDrive,
-  BookOpen,
   PenLine,
   Eye,
-  ScanText,
-  Image,
-  Hand,
-  BarChart,
-  PieChart,
-  Table,
-  GitBranch,
   Terminal,
-  Box,
-  Settings,
-  Cable,
-  Wrench,
 } from "lucide-react";
-import { story, learningJourney, skillCategoryLabels, skillCategoryDescriptions, skills, storyJourneyCards } from "../data/portfolio";
+import { story, learningJourney, storyJourneyCards } from "../data/portfolio";
 import { JourneyCard } from "./JourneyCard";
 
 const journeyLayerMeta = {
@@ -285,112 +273,6 @@ export function Story() {
                 );
               })}
             </div>
-          </div>
-        </div>
-      </section>
-
-      <section
-        className="py-20 md:py-28 border-t border-border"
-        aria-labelledby="skills-story-heading"
-      >
-        <div className="container">
-          <header className="text-center mb-16">
-            <h2
-              id="skills-story-heading"
-              className="text-3xl md:text-4xl font-semibold tracking-tight text-text mb-4"
-            >
-              Skills — Organized by Domain
-            </h2>
-            <p className="text-lg text-text-muted max-w-2xl mx-auto">
-              Clean tags with real links — no fake progress bars
-            </p>
-          </header>
-
-          <div className="space-y-12">
-            {Object.entries(skills).map(([categoryKey, skillList], catIndex) => (
-              <div key={categoryKey}>
-                <div className="flex items-center gap-3 mb-6">
-                  <div className="w-10 h-10 rounded-lg bg-accent-bg border border-accent-border flex items-center justify-center group-hover:scale-105 transition-transform duration-300">
-                    {(() => {
-                      const categoryIcons = {
-                        programming: Code,
-                        aiComputerVision: Brain,
-                        dataScientific: Database,
-                        devTools: Server,
-                        embeddedSystems: Cpu,
-                      };
-                      const Icon = categoryIcons[categoryKey];
-                      return <Icon size={20} className="text-accent" aria-hidden="true" />;
-                    })()}
-                  </div>
-                  <div>
-                    <h3 className="text-xl font-medium text-text">{skillCategoryLabels[categoryKey]}</h3>
-                    <p className="text-sm text-text-muted">{skillCategoryDescriptions[categoryKey]}</p>
-                  </div>
-                </div>
-
-                <div className="flex flex-wrap gap-3 entrance-wrapper" role="list" aria-label={`${skillCategoryLabels[categoryKey]} skills`}>
-                  {skillList.map((skill, skillIndex) => {
-                    const skillIcons = {
-                      code: Code,
-                      cpu: Cpu,
-                      eye: Eye,
-                      scanText: ScanText,
-                      image: Image,
-                      brain: Brain,
-                      hand: Hand,
-                      database: Database,
-                      barChart: BarChart,
-                      bookOpen: BookOpen,
-                      table: Table,
-                      pieChart: PieChart,
-                      gitBranch: GitBranch,
-                      terminal: Terminal,
-                      box: Box,
-                      settings: Settings,
-                      cable: Cable,
-                      wrench: Wrench,
-                    };
-                    const Icon = skillIcons[skill.icon] || Code;
-                    const linkUrl = skill.link;
-
-                    const tagClasses = `group inline-flex items-center gap-2 px-4 py-2 rounded-xl border border-border bg-bg-elevated/50 hover:border-accent-border hover:bg-accent-bg hover:scale-105 transition-all duration-300`;
-
-                    const linkClasses = linkUrl
-                      ? "cursor-pointer hover:shadow-lg hover:shadow-accent/10 focus-visible outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg"
-                      : "";
-
-                    if (linkUrl) {
-                      return (
-                        <a
-                          key={skill.name}
-                          href={linkUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className={`${tagClasses} ${linkClasses}`}
-                          role="listitem"
-                          aria-label={`View ${skill.name} documentation`}
-                        >
-                          <Icon size={14} className="text-accent/80 group-hover:text-accent transition-colors" aria-hidden="true" />
-                          <span className="text-sm font-medium text-text">{skill.name}</span>
-                        </a>
-                      );
-                    }
-
-                    return (
-                      <span
-                        key={skill.name}
-                        className={tagClasses}
-                        role="listitem"
-                      >
-                        <Icon size={14} className="text-accent/80 group-hover:text-accent transition-colors" aria-hidden="true" />
-                        <span className="text-sm font-medium text-text">{skill.name}</span>
-                      </span>
-                    );
-                  })}
-                </div>
-              </div>
-            ))}
           </div>
         </div>
       </section>
