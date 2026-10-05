@@ -16,28 +16,24 @@ export const personalInfo: PersonalInfo = {
 };
 
 export const navItems: NavItem[] = [
-  { id: "home", label: "Home", href: "/" },
-  { id: "story", label: "Story", href: "/#story" },
+  { id: "about", label: "About", href: "/about" },
   { id: "work", label: "Work", href: "/work" },
+  { id: "writing", label: "Writing", href: "/notes" },
   { id: "now", label: "Now", href: "/now" },
-  { id: "notes", label: "Notes", href: "/notes" },
-  { id: "life", label: "Life", href: "/life" },
   { id: "contact", label: "Contact", href: "/#contact" },
 ];
 
 export const homeIntro: HomeIntro = {
   greeting: "Hi, I'm Saad.",
-  tagline: "Senior Computer Engineering undergraduate at NUTECH specializing in compute-efficient edge computer vision and practical software systems.",
+  tagline: "Senior Computer Engineering undergraduate at NUTECH specializing in compute-efficient edge computer vision and practical systems software.",
   intro:
-    "I engineer systems from hardware primitives up through high-level vision pipelines, data architectures, and edge deployments. I value live runtime verification over theoretical assumptions and build for real-world constraints.",
+    "I engineer systems for resource-constrained hardware — optimizing deep learning pipelines to run in real time on commodity CPUs, writing low-level concurrency in C, and bridging bare-metal circuits with software.",
   currently: {
-    heading: "Currently",
+    heading: "Current Focus",
     items: [
-      { text: "Senior Computer Engineering undergraduate at NUTECH (7th Semester, CEN Batch 22)" },
+      { text: "Senior Computer Engineering at NUTECH (7th Semester, CEN Batch 22)" },
       { text: "Architecting Industrial Vision FYP: High-speed conveyor quality inspection with YOLOv8" },
-      { text: "Engineering compute-efficient CPU pipelines: YOLOv8n, PaddleOCR, and ByteTrack" },
-      { text: "Coursework in Digital System Design (Verilog RTL / FPGA), DBMS, and AI/ML" },
-      { text: "Active retail investor on the Pakistan Stock Exchange (PSX) focusing on macro risk and dividend mechanics" },
+      { text: "Edge AI optimization: Real-time CPU inference with YOLOv8n, PaddleOCR, and ByteTrack" },
     ],
   },
 };

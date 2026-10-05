@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowLeft, Download, GitBranch, ExternalLink, Brain, Layers } from "lucide-react";
 import { getAllProjects, getProjectBySlug } from "@/lib/content";
 import { constructMetadata } from "@/lib/metadata";
 
@@ -45,70 +44,57 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
   }
 
   return (
-    <div className="pt-28 pb-24">
-      <div className="container max-w-4xl">
+    <div className="pt-24 pb-20">
+      <div className="container max-w-3xl">
         {/* Navigation Breadcrumb */}
-        <div className="mb-8">
+        <div className="mb-6">
           <Link
             href="/work"
-            className="inline-flex items-center gap-2 text-sm font-medium text-[#8b95a8] hover:text-[#00d4aa] transition-colors group"
+            className="text-sm font-medium text-gray-500 hover:text-gray-900 transition-colors"
           >
-            <ArrowLeft size={16} className="transition-transform group-hover:-translate-x-1" />
-            <span>Back to All Projects</span>
+            ← Back to all projects
           </Link>
         </div>
 
-        {/* Header Metadata */}
-        <header className="mb-10">
-          <div className="flex flex-wrap items-center gap-3 mb-4">
-            <span className="px-3 py-1 rounded-full text-xs font-semibold text-[#00d4aa] bg-[#00d4aa]/10 border border-[#00d4aa]/30 uppercase tracking-wider">
-              {project.category}
-            </span>
-            {project.featured && (
-              <span className="px-3 py-1 rounded-full text-xs font-medium text-[#e8eaf0] bg-[#1a2438] border border-[#23314a]">
-                Flagship Defense Capstone
-              </span>
-            )}
+        {/* Header */}
+        <header className="mb-8">
+          <div className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">
+            {project.category}
           </div>
 
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-[#e8eaf0] mb-6 leading-tight">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-gray-900 mb-4 leading-tight">
             {project.title}
           </h1>
 
-          <p className="text-lg sm:text-xl text-[#8b95a8] leading-relaxed">
+          <p className="text-base sm:text-lg text-gray-600 leading-relaxed">
             {project.description}
           </p>
         </header>
 
-        {/* Hero Visual Container */}
+        {/* Hero Visual */}
         {project.heroImage && (
-          <div className="relative w-full h-64 sm:h-80 md:h-[420px] rounded-2xl overflow-hidden border border-[#1a2438] bg-[#0a0f1d] mb-12 shadow-2xl">
+          <div className="relative w-full h-60 sm:h-80 rounded-lg overflow-hidden border border-gray-200 bg-gray-50 mb-8">
             <Image
               src={project.heroImage}
-              alt={`${project.title} Architecture Preview`}
+              alt={project.title}
               fill
               priority
-              sizes="(max-width: 1024px) 100vw, 896px"
+              sizes="(max-width: 1024px) 100vw, 768px"
               className="object-cover"
-            />
-            <div
-              className="absolute inset-0 bg-gradient-to-t from-[#0e162a]/80 via-transparent to-transparent pointer-events-none"
-              aria-hidden="true"
             />
           </div>
         )}
 
         {/* Action Buttons */}
-        <div className="flex flex-wrap items-center gap-3.5 pb-10 mb-10 border-b border-[#1a2438]">
+        <div className="flex flex-wrap items-center gap-3 pb-8 mb-8 border-b border-gray-200">
           {project.reportUrl && (
             <a
               href={project.reportUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-5 py-3 bg-[#00d4aa] text-[#0a0f1d] font-semibold rounded-lg hover:bg-[#00b894] transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00d4aa]"
+              className="px-4 py-2 bg-gray-900 text-white text-sm font-medium rounded hover:bg-gray-800 transition-colors"
             >
-              <Download size={18} />
-              <span>Download IEEE Defense Manuscript (PDF)</span>
+              Download IEEE Report (PDF)
             </a>
           )}
 
@@ -117,48 +103,34 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
               href={project.githubUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-5 py-3 border border-[#1a2438] text-[#e8eaf0] font-medium rounded-lg hover:bg-[#1a2438] hover:border-[#23314a] transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00d4aa]"
+              className="px-4 py-2 border border-gray-300 text-gray-700 text-sm font-medium rounded hover:bg-gray-50 transition-colors"
             >
-              <GitBranch size={18} />
-              <span>View Repository on GitHub</span>
-            </a>
-          )}
-
-          {project.liveUrl && (
-            <a
-              href={project.liveUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-5 py-3 border border-[#1a2438] text-[#e8eaf0] font-medium rounded-lg hover:bg-[#1a2438] transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00d4aa]"
-            >
-              <ExternalLink size={18} />
-              <span>Live Demonstration</span>
+              GitHub Repository
             </a>
           )}
         </div>
 
-        {/* Technical Architecture & Deep Dive */}
-        <section className="space-y-12">
+        {/* Technical Architecture */}
+        <section className="space-y-8">
           <div>
-            <h2 className="text-2xl font-semibold text-[#e8eaf0] mb-4 flex items-center gap-2">
-              <Brain size={22} className="text-[#00d4aa]" />
-              Engineering Overview & Runtime Heuristics
+            <h2 className="text-lg font-bold text-gray-900 mb-3">
+              Overview & Implementation Details
             </h2>
-            <div className="prose prose-invert max-w-none text-[#8b95a8] text-base sm:text-lg leading-relaxed whitespace-pre-line space-y-4">
+            <div className="text-base text-gray-700 leading-relaxed whitespace-pre-line space-y-4">
               {project.longDescription || project.description}
             </div>
           </div>
 
           {/* Technology Matrix */}
-          <div className="p-6 md:p-8 rounded-2xl border border-[#1a2438] bg-[#0e162a]/50">
-            <h3 className="text-lg font-semibold text-[#e8eaf0] mb-4">
-              Technologies & Hardware Environment
+          <div className="p-5 rounded-lg border border-gray-200 bg-gray-50">
+            <h3 className="text-sm font-semibold text-gray-900 mb-3">
+              Technologies & Environment
             </h3>
-            <div className="flex flex-wrap gap-2.5" role="list">
+            <div className="flex flex-wrap gap-1.5" role="list">
               {project.technologies.map((tech) => (
                 <span
                   key={tech}
-                  className="px-3.5 py-1.5 rounded-lg text-sm font-medium text-[#e8eaf0] bg-[#0a0f1d] border border-[#1a2438]"
+                  className="px-2.5 py-1 rounded text-xs font-medium text-gray-700 bg-white border border-gray-200"
                   role="listitem"
                 >
                   {tech}
@@ -167,24 +139,23 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
             </div>
           </div>
 
-          {/* Technical Diagram Gallery */}
+          {/* Diagrams / Images */}
           {project.images && project.images.length > 0 && (
             <div>
-              <h3 className="text-2xl font-semibold text-[#e8eaf0] mb-6 flex items-center gap-2">
-                <Layers size={22} className="text-[#00d4aa]" />
-                System Diagrams & Validation Artifacts
+              <h3 className="text-lg font-bold text-gray-900 mb-4">
+                System Diagrams & Verification Artifacts
               </h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {project.images.map((img, i) => (
                   <div
                     key={i}
-                    className="relative h-60 sm:h-72 rounded-xl overflow-hidden border border-[#1a2438] bg-[#0a0f1d]"
+                    className="relative h-48 sm:h-56 rounded-lg overflow-hidden border border-gray-200 bg-gray-50"
                   >
                     <Image
                       src={img}
                       alt={`${project.title} diagram ${i + 1}`}
                       fill
-                      sizes="(max-width: 768px) 100vw, 450px"
+                      sizes="(max-width: 768px) 100vw, 384px"
                       className="object-cover"
                     />
                   </div>
@@ -195,18 +166,12 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
         </section>
 
         {/* Footer Navigation */}
-        <div className="mt-16 pt-8 border-t border-[#1a2438] flex items-center justify-between">
-          <Link
-            href="/work"
-            className="inline-flex items-center gap-2 text-sm text-[#00d4aa] hover:underline"
-          >
-            ← Return to Projects Index
+        <div className="mt-12 pt-6 border-t border-gray-200 flex items-center justify-between text-sm">
+          <Link href="/work" className="font-medium text-blue-600 hover:underline">
+            ← Return to projects
           </Link>
-          <Link
-            href="/notes"
-            className="inline-flex items-center gap-2 text-sm text-[#8b95a8] hover:text-[#e8eaf0]"
-          >
-            Read Engineering Notes →
+          <Link href="/notes" className="text-gray-600 hover:text-gray-900">
+            Read technical notes →
           </Link>
         </div>
       </div>

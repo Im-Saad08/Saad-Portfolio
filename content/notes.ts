@@ -85,12 +85,4 @@ Focus on rapid, zero-hesitation physical reproduction on an exam sheet:
 • A standard block diagram or state table.
 • Time-boxed practice writing without looking at notes to build motor memory.`,
   },
-  {
-    slug: "linux-buildroot-lessons",
-    title: "What Buildroot and BusyBox Taught Me About Linux Internals",
-    category: "Systems",
-    published: false,
-    date: "Planned",
-    excerpt: "Configuring custom kernels, writing minimal init scripts, and creating stripped-down embedded environments for Raspberry Pi.",
-  },
 ];

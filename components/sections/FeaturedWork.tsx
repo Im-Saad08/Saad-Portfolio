@@ -1,15 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { GitBranch, ArrowRight, Brain, Zap, Terminal, Layers, Download, Maximize2 } from "lucide-react";
 import { getAllProjects, type Project } from "@/lib/content";
-
-const categoryIcons: Record<string, typeof Brain> = {
-  "AI / Computer Vision": Brain,
-  "Signal Processing": Zap,
-  "Embedded Linux": Layers,
-  "Digital Electronics": Layers,
-  "Operating Systems": Terminal,
-};
 
 export function FeaturedWork() {
   const projects = getAllProjects();
@@ -17,36 +8,27 @@ export function FeaturedWork() {
   const others = projects.filter((p) => !p.featured).slice(0, 2);
 
   return (
-    <section id="work" className="py-20 md:py-28" aria-labelledby="work-heading">
+    <section id="work" className="py-16 border-t border-gray-200" aria-labelledby="work-heading">
       <div className="container">
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-16 gap-4">
+        <div className="flex flex-col sm:flex-row sm:items-baseline justify-between mb-10 gap-2">
           <div>
-            <h2
-              id="work-heading"
-              className="text-3xl md:text-4xl font-semibold tracking-tight text-[#e8eaf0] mb-3"
-            >
-              Selected Engineering Projects
+            <h2 id="work-heading" className="text-2xl font-bold tracking-tight text-gray-900 mb-1">
+              Featured Projects
             </h2>
-            <p className="text-base sm:text-lg text-[#8b95a8] max-w-2xl">
-              Systems engineered with operational benchmarks: detection latencies, concurrency, and real hardware constraints.
+            <p className="text-sm text-gray-600">
+              Selected engineering builds across edge computer vision and systems software.
             </p>
           </div>
-          <Link
-            href="/work"
-            className="group inline-flex items-center gap-2 text-sm font-medium text-[#00d4aa] hover:underline"
-          >
-            <span>View All Projects</span>
-            <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
+          <Link href="/work" className="text-sm font-medium text-blue-600 hover:underline">
+            View all projects →
           </Link>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {/* Featured Hero Card (spans 2 or 3 columns on large screens) */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {featured.map((project) => (
             <ProjectCard key={project.slug} project={project} isFeatured />
           ))}
 
-          {/* Regular Project Cards */}
           {others.map((project) => (
             <ProjectCard key={project.slug} project={project} />
           ))}
@@ -63,120 +45,81 @@ export function ProjectCard({
   project: Project;
   isFeatured?: boolean;
 }) {
-  const CategoryIcon = categoryIcons[project.category] || Brain;
-
   return (
     <article
-      className={`group relative rounded-2xl border border-[#1a2438] bg-[#0e162a]/60 hover:border-[#00d4aa]/40 transition-all duration-300 flex flex-col overflow-hidden ${
-        isFeatured ? "md:col-span-2 lg:col-span-3" : "md:col-span-1"
+      className={`rounded-lg border border-gray-200 bg-white hover:border-gray-300 transition-colors flex flex-col overflow-hidden ${
+        isFeatured ? "md:col-span-2" : "md:col-span-1"
       }`}
     >
-      {/* Hero Media Preview */}
       {project.heroImage && (
         <Link
           href={`/work/${project.slug}`}
-          className="relative block h-56 sm:h-64 md:h-72 w-full overflow-hidden bg-[#0a0f1d]"
+          className="relative block h-52 sm:h-64 w-full bg-gray-50 border-b border-gray-100"
           aria-label={`View case study: ${project.title}`}
         >
           <Image
             src={project.heroImage}
-            alt={`${project.title} Preview`}
+            alt={project.title}
             fill
-            sizes={isFeatured ? "(max-width: 1024px) 100vw, 1200px" : "(max-width: 768px) 100vw, 400px"}
-            className="object-cover transition-transform duration-500 group-hover:scale-105"
+            sizes={isFeatured ? "(max-width: 1024px) 100vw, 1080px" : "(max-width: 768px) 100vw, 540px"}
+            className="object-cover"
           />
-          <div
-            className="absolute inset-0 bg-gradient-to-t from-[#0e162a] via-transparent to-transparent pointer-events-none"
-            aria-hidden="true"
-          />
-          <div className="absolute bottom-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-            <span className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-[#0a0f1d]/90 backdrop-blur-sm border border-[#1a2438] text-xs font-medium text-[#e8eaf0] rounded-lg">
-              <Maximize2 size={13} />
-              Read Full Case Study
-            </span>
-          </div>
         </Link>
       )}
 
-      {/* Card Body */}
-      <div className="p-6 md:p-8 flex flex-col flex-1 justify-between">
+      <div className="p-6 flex flex-col flex-1 justify-between">
         <div>
-          <div className="flex items-center justify-between gap-4 mb-4">
-            <div className="flex items-center gap-2">
-              <div className="w-8 h-8 rounded-lg bg-[#00d4aa]/10 border border-[#00d4aa]/30 flex items-center justify-center">
-                <CategoryIcon size={16} className="text-[#00d4aa]" aria-hidden="true" />
-              </div>
-              <span className="text-xs font-medium text-[#00d4aa] uppercase tracking-wider">
-                {project.category}
-              </span>
-            </div>
+          <div className="flex items-center gap-2 mb-2 text-xs text-gray-500 font-medium">
+            <span>{project.category}</span>
             {project.featured && (
-              <span className="px-2.5 py-0.5 text-xs font-medium text-[#00d4aa] bg-[#00d4aa]/10 border border-[#00d4aa]/30 rounded-full">
-                Featured Defense Project
-              </span>
+              <>
+                <span>•</span>
+                <span className="text-blue-700 font-semibold">Featured Capstone</span>
+              </>
             )}
           </div>
 
-          <h3 className="text-xl md:text-2xl font-semibold text-[#e8eaf0] mb-3 group-hover:text-[#00d4aa] transition-colors">
-            <Link href={`/work/${project.slug}`}>{project.title}</Link>
+          <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-2">
+            <Link href={`/work/${project.slug}`} className="hover:text-blue-600 transition-colors">
+              {project.title}
+            </Link>
           </h3>
 
-          <p className="text-sm md:text-base text-[#8b95a8] leading-relaxed mb-6">
+          <p className="text-sm text-gray-600 leading-relaxed mb-4">
             {project.description}
           </p>
 
-          <div className="flex flex-wrap gap-2 mb-6" role="list">
+          <div className="flex flex-wrap gap-1.5 mb-6" role="list">
             {project.technologies.slice(0, 6).map((tech) => (
               <span
                 key={tech}
-                className="px-2.5 py-1 text-xs font-medium text-[#8b95a8] bg-[#0a0f1d] border border-[#1a2438] rounded-md"
+                className="px-2 py-0.5 text-xs text-gray-600 bg-gray-100 rounded"
                 role="listitem"
               >
                 {tech}
               </span>
             ))}
-            {project.technologies.length > 6 && (
-              <span className="px-2.5 py-1 text-xs font-medium text-[#5a6578] bg-[#0a0f1d] border border-[#1a2438] rounded-md">
-                +{project.technologies.length - 6} more
-              </span>
-            )}
           </div>
         </div>
 
-        {/* Footer Actions */}
-        <div className="pt-4 border-t border-[#1a2438] flex flex-wrap items-center justify-between gap-3 text-sm">
+        <div className="pt-4 border-t border-gray-100 flex items-center justify-between text-sm">
           <Link
             href={`/work/${project.slug}`}
-            className="inline-flex items-center gap-1.5 font-medium text-[#00d4aa] hover:underline"
+            className="font-medium text-blue-600 hover:underline"
           >
-            <span>View Architecture & Case Study</span>
-            <ArrowRight size={15} />
+            Read case study →
           </Link>
 
-          <div className="flex items-center gap-3">
-            {project.reportUrl && (
-              <a
-                href={project.reportUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 text-xs text-[#8b95a8] hover:text-[#00d4aa] transition-colors"
-              >
-                <Download size={13} />
-                <span>IEEE PDF</span>
-              </a>
-            )}
-            {project.githubUrl && (
-              <a
-                href={project.githubUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 text-xs text-[#8b95a8] hover:text-[#00d4aa] transition-colors"
-              >
-                <GitBranch size={13} />
-                <span>Source</span>
-              </a>
-            )}
-          </div>
+          {project.reportUrl && (
+            <a
+              href={project.reportUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-xs text-gray-500 hover:text-gray-900 transition-colors"
+            >
+              IEEE Report (PDF)
+            </a>
+          )}
         </div>
       </div>
     </article>

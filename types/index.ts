@@ -50,14 +50,8 @@ export interface Story {
   chapters: StoryChapter[];
 }
 
-export interface StoryJourneyCard {
-  title: string;
-  description: string;
-  image: string;
-}
-
 export interface NowFocusItem {
-  icon: "book-open" | "eye" | "wrench" | "database" | "pen-line" | "users";
+  icon?: string;
   title: string;
   description: string;
 }
@@ -105,7 +99,7 @@ export interface AdditionalProject {
 
 export interface SkillItem {
   name: string;
-  icon: string;
+  icon?: string;
   link?: string;
 }
 
@@ -118,7 +112,7 @@ export interface EducationData {
     institution: string;
   };
   focusAreas: string[];
-  gallery: {
+  gallery?: {
     university: string[];
     college: string[];
   };
@@ -141,16 +135,6 @@ export interface LeadershipOrg {
   gallery: LeadershipGalleryItem[];
 }
 
-export interface LifeEntry {
-  id: string;
-  date: string;
-  title: string;
-  description: string;
-  category: string;
-  image?: string;
-  story?: string;
-}
-
 export type TimelineCategory = "Engineering" | "Projects" | "Learning" | "University" | "Leadership" | "Personal";
 
 export interface TimelineEntry {
@@ -160,9 +144,4 @@ export interface TimelineEntry {
   title: string;
   description: string;
   story?: string;
-}
-
-export interface LearningLayer {
-  layer: string;
-  items: string[];
 }
