@@ -7,7 +7,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "oxlint app components lib"
+    "lint": "oxlint app components lib content types"
   },
   "dependencies": {
     "next": "^16.3.8",
