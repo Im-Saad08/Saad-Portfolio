@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { useReducedMotion } from "../hooks/useIntersectionObserver";
 
 export function JourneyCard({ card, index, totalCards, reducedMotion, baseDelay, selectedIndex, onSelect, hoveredIndex }) {
   const [isHovered, setIsHovered] = useState(false);
@@ -20,7 +19,7 @@ export function JourneyCard({ card, index, totalCards, reducedMotion, baseDelay,
   // Selected: stay at front, lifted, un-rotated
   const isFront = isActive || isSelected;
 
-  const transform = isFront
+  const baseTransform = isFront
     ? "rotate(0deg) translateY(-30px) translateX(0) scale(1.03)"
     : `rotate(${baseRotation}deg) translateX(${baseX}px) translateY(${baseY}px)`;
 
@@ -28,7 +27,6 @@ export function JourneyCard({ card, index, totalCards, reducedMotion, baseDelay,
   const isDimmed = isHoveredByOther && !isSelected;
 
   const cardStyle = {
-    transform,
     zIndex: isFront ? 100 : (isDimmed ? 1 : totalCards - index),
     transition: reducedMotion
       ? "none"
@@ -37,7 +35,7 @@ export function JourneyCard({ card, index, totalCards, reducedMotion, baseDelay,
     filter: isDimmed ? "brightness(0.85) saturate(0.7)" : (isSelected || isActive ? "none" : "brightness(0.95)"),
     transform: isDimmed && !isFront
       ? `rotate(${baseRotation}deg) translateX(${baseX}px) translateY(${baseY}px) scale(0.96)`
-      : transform,
+      : baseTransform,
     boxShadow: isFront
       ? "0 32px 60px -12px rgba(0, 0, 0, 0.6), 0 0 0 2px rgba(0, 212, 170, 0.2)"
       : isDimmed

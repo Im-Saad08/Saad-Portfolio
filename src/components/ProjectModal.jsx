@@ -1,14 +1,11 @@
 import { useEffect, useRef, useState } from "react";
-import { X, ChevronLeft, ChevronRight, GitBranch, ExternalLink, Download, Monitor } from "lucide-react";
+import { X, ChevronLeft, ChevronRight, GitBranch, ExternalLink, Download } from "lucide-react";
 
 export function ProjectModal({ project, isOpen, onClose }) {
   const modalRef = useRef(null);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
-  // Early return guard - must be before any project property access
-  if (!isOpen || !project) return null;
-
-  const images = project.images || [];
+  const images = project?.images || [];
   const hasImages = images.length > 0;
 
   const prevImage = () => {
@@ -32,15 +29,18 @@ export function ProjectModal({ project, isOpen, onClose }) {
   }, [isOpen]);
 
   useEffect(() => {
+    if (!isOpen) return;
     const handleKeyDown = (e) => {
-      if (!isOpen) return;
       if (e.key === "Escape") onClose();
       if (e.key === "ArrowLeft") prevImage();
       if (e.key === "ArrowRight") nextImage();
     };
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [isOpen, onClose]);
+  }, [isOpen, onClose, images.length]);
+
+  // Early return guard - after all hooks
+  if (!isOpen || !project) return null;
 
   return (
     <div
@@ -178,6 +178,17 @@ export function ProjectModal({ project, isOpen, onClose }) {
                 >
                   <ExternalLink size={16} />
                   Live Demo
+                </a>
+              )}
+              {project.reportUrl && (
+                <a
+                  href={project.reportUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-4 py-2 bg-accent-bg border border-accent-border text-accent font-medium rounded-lg hover:bg-accent/20 hover:border-accent transition-colors focus-visible"
+                >
+                  <Download size={16} />
+                  IEEE Report (PDF)
                 </a>
               )}
               <a

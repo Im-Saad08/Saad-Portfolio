@@ -1,17 +1,7 @@
 import { useIntersectionObserver, useReducedMotion } from "../hooks/useIntersectionObserver";
-import { ArrowRight, GitBranch, Mail, User, Download, Calendar, BookOpen, Eye, Wrench, Database, PenLine, Users, CheckCircle } from "lucide-react";
+import { ArrowRight, GitBranch, Mail, Download, Calendar, CheckCircle } from "lucide-react";
 import { HeroBackground } from "./BackgroundEffects";
 import { personalInfo, homeIntro } from "../data/portfolio";
-
-const currentlyIcons = {
-  Calendar,
-  BookOpen,
-  Eye,
-  Wrench,
-  Database,
-  PenLine,
-  Users,
-};
 
 export function Hero() {
   const reducedMotion = useReducedMotion();
