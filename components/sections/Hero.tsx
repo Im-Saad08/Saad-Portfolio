@@ -19,58 +19,44 @@ export function Hero() {
           </div>
 
           <div>
-            <p className="text-sm font-medium text-gray-500 mb-1">
-              Senior Computer Engineering Undergraduate • NUTECH Islamabad
-            </p>
             <h1
               id="hero-heading"
-              className="text-3xl sm:text-4xl font-bold tracking-tight text-gray-900 mb-3"
+              className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-gray-900 mb-2"
             >
               Muhammad Saad
             </h1>
+            <p className="text-base sm:text-lg font-medium text-gray-600 mb-4">
+              Computer Engineering Undergraduate · NUTECH Islamabad
+            </p>
             <p className="text-lg text-gray-700 leading-relaxed">
               {homeIntro.tagline}
             </p>
           </div>
         </div>
 
-        <p className="text-base text-gray-600 leading-relaxed mb-8">
+        <p className="text-base sm:text-lg text-gray-600 leading-relaxed mb-6 max-w-2xl">
           {homeIntro.intro}
         </p>
 
-        {/* Current focus note */}
-        <div className="p-5 rounded-lg border border-gray-200 bg-gray-50 mb-8">
-          <div className="flex items-center justify-between mb-2">
-            <span className="text-xs font-semibold uppercase tracking-wider text-gray-500">
-              Current Focus
-            </span>
-            <Link href="/now" className="text-xs font-medium text-blue-600 hover:underline">
-              Read /now page →
-            </Link>
-          </div>
-          <ul className="space-y-1.5 text-sm text-gray-700">
-            {homeIntro.currently.items.map((item, index) => (
-              <li key={index} className="flex items-start gap-2">
-                <span className="text-gray-400 mt-1">•</span>
-                <span>{item.text}</span>
-              </li>
-            ))}
-          </ul>
+        {/* Living Status */}
+        <div className="mb-8 text-sm text-gray-600">
+          <span className="inline-block w-2 h-2 rounded-full bg-emerald-500 mr-2.5 align-middle" />
+          <span>Currently: Senior FYP &amp; Verilog RTL at NUTECH. </span>
+          <Link
+            href="/now"
+            className="text-gray-900 font-medium underline underline-offset-4 hover:text-blue-600 transition-colors ml-1"
+          >
+            Read current focus (/now) →
+          </Link>
         </div>
 
         {/* Action Links */}
-        <div className="flex flex-wrap items-center gap-3">
+        <div className="flex flex-wrap items-center gap-4 pt-1">
           <Link
             href="/work"
             className="px-5 py-2.5 bg-gray-900 text-white text-sm font-medium rounded hover:bg-gray-800 transition-colors"
           >
-            View Projects
-          </Link>
-          <Link
-            href="/about"
-            className="px-5 py-2.5 border border-gray-300 text-gray-700 text-sm font-medium rounded hover:bg-gray-50 transition-colors"
-          >
-            About Me
+            Explore Engineering Work →
           </Link>
           <a
             href="/Saad_CV.pdf"
@@ -79,6 +65,12 @@ export function Hero() {
           >
             Download CV (PDF)
           </a>
+          <Link
+            href="/about"
+            className="text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors"
+          >
+            About &amp; Background →
+          </Link>
         </div>
       </div>
     </section>

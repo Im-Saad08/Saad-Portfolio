@@ -23,6 +23,12 @@ export default function NotFound() {
           >
             View Projects
           </Link>
+          <Link
+            href="/notes"
+            className="px-4 py-2 border border-gray-300 text-gray-700 rounded hover:bg-gray-50 transition-colors"
+          >
+            Read Writing
+          </Link>
         </div>
       </div>
     </div>

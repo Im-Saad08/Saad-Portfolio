@@ -5,7 +5,7 @@ export function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="border-t border-gray-200 py-12 mt-20" role="contentinfo">
+    <footer className="pt-20 pb-16 mt-20" role="contentinfo">
       <div className="container">
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
           <div>
@@ -41,10 +41,18 @@ export function Footer() {
             >
               GitHub
             </a>
+            <span>•</span>
+            <a
+              href="/Saad_CV.pdf"
+              download="Muhammad_Saad_CV.pdf"
+              className="hover:text-gray-900 transition-colors"
+            >
+              CV (PDF)
+            </a>
           </div>
         </div>
 
-        <div className="mt-8 pt-6 border-t border-gray-100 text-xs text-gray-500 flex flex-col sm:flex-row items-center justify-between gap-2">
+        <div className="mt-12 text-xs text-gray-400 flex flex-col sm:flex-row items-center justify-between gap-2">
           <p>© {currentYear} Muhammad Saad. All rights reserved.</p>
           <p>National University of Technology (NUTECH), Islamabad</p>
         </div>

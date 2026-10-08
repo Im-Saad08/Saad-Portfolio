@@ -48,13 +48,13 @@ export default function NowPage() {
         </header>
 
         {/* Focus Item List */}
-        <div className="space-y-6">
+        <div className="space-y-10">
           {nowContent.focus.map((item) => (
-            <article key={item.title} className="pb-5 border-b border-gray-100 last:border-b-0">
-              <h2 className="text-base font-bold text-gray-900 mb-1">
+            <article key={item.title}>
+              <h2 className="text-lg font-bold text-gray-900 mb-1">
                 {item.title}
               </h2>
-              <p className="text-sm text-gray-600 leading-relaxed">
+              <p className="text-base text-gray-600 leading-relaxed">
                 {item.description}
               </p>
             </article>
@@ -62,7 +62,7 @@ export default function NowPage() {
         </div>
 
         {/* Footer Note */}
-        <div className="mt-12 pt-6 border-t border-gray-200 text-xs text-gray-500">
+        <div className="mt-16 text-xs text-gray-400">
           <p>This page is updated periodically as priorities shift across semesters and milestones.</p>
         </div>
       </div>

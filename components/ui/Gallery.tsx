@@ -38,7 +38,7 @@ export function Gallery({
   if (images.length === 0) return null;
 
   return (
-    <div className="mt-6 pt-6 border-t border-gray-100">
+    <div className="mt-6">
       {title && (
         <h4 className="text-sm font-semibold text-gray-700 mb-3">
           {title}

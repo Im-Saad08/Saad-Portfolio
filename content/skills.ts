@@ -1,12 +1,25 @@
 import type { SkillItem } from "@/types";
 
 export const skills: Record<string, SkillItem[]> = {
-  programming: [
-    { name: "Python", icon: "code" },
-    { name: "C++", icon: "code" },
-    { name: "C", icon: "code" },
-    { name: "MATLAB", icon: "cpu" },
+  hardwareEmbedded: [
     { name: "Verilog RTL", icon: "cpu" },
+    { name: "FPGA Synthesis", icon: "cpu" },
+    { name: "PIC16F877A", icon: "cpu" },
+    { name: "Intel 8051", icon: "cpu" },
+    { name: "UART Serial", icon: "cable" },
+    { name: "Raspberry Pi", icon: "cpu" },
+    { name: "Embedded Linux", icon: "cpu" },
+    { name: "MPLAB X IDE", icon: "wrench" },
+    { name: "Proteus Simulation", icon: "wrench" },
+    { name: "Keil µVision", icon: "wrench" },
+  ],
+  systemsConcurrency: [
+    { name: "C", icon: "code" },
+    { name: "C++", icon: "code" },
+    { name: "POSIX Pthreads", icon: "terminal" },
+    { name: "Linux / Ubuntu", icon: "terminal" },
+    { name: "GCC / Make", icon: "code" },
+    { name: "Git & GitHub", icon: "git-branch" },
   ],
   aiComputerVision: [
     { name: "YOLOv8n / YOLO", icon: "eye" },
@@ -18,48 +31,28 @@ export const skills: Record<string, SkillItem[]> = {
     { name: "Edge Inference", icon: "cpu" },
   ],
   dataScientific: [
+    { name: "Python 3.12", icon: "code" },
     { name: "PostgreSQL", icon: "database" },
     { name: "Neon Cloud DB", icon: "database" },
-    { name: "MySQL / Workbench", icon: "database" },
     { name: "Relational 3NF", icon: "database" },
+    { name: "FastAPI", icon: "terminal" },
     { name: "NumPy", icon: "database" },
     { name: "SciPy", icon: "database" },
-    { name: "Matplotlib", icon: "bar-chart" },
+    { name: "MATLAB", icon: "cpu" },
     { name: "Power BI", icon: "pie-chart" },
-  ],
-  devTools: [
-    { name: "FastAPI", icon: "terminal" },
-    { name: "Git & GitHub", icon: "git-branch" },
-    { name: "Linux / Ubuntu", icon: "terminal" },
-    { name: "POSIX Pthreads", icon: "terminal" },
-    { name: "GCC / Make", icon: "code" },
-    { name: "VS Code", icon: "code" },
-    { name: "Native venv", icon: "box" },
-  ],
-  embeddedSystems: [
-    { name: "PIC16F877A", icon: "cpu" },
-    { name: "Intel 8051", icon: "cpu" },
-    { name: "UART Serial", icon: "cable" },
-    { name: "Raspberry Pi", icon: "cpu" },
-    { name: "Embedded Linux", icon: "cpu" },
-    { name: "MPLAB X IDE", icon: "wrench" },
-    { name: "Proteus Simulation", icon: "wrench" },
-    { name: "Keil µVision", icon: "wrench" },
   ],
 };
 
 export const skillCategoryLabels: Record<string, string> = {
-  programming: "Programming & Hardware Description",
-  aiComputerVision: "AI & Computer Vision",
-  dataScientific: "Data & Relational Databases",
-  devTools: "Development & Frameworks",
-  embeddedSystems: "Embedded & Hardware Interfaces",
+  hardwareEmbedded: "Hardware Primitives & Microcontrollers",
+  systemsConcurrency: "Systems Software & Concurrency",
+  aiComputerVision: "Edge AI & Computer Vision",
+  dataScientific: "Data Infrastructure & Scientific Computing",
 };
 
 export const skillCategoryDescriptions: Record<string, string> = {
-  programming: "Core programming languages and hardware description",
-  aiComputerVision: "Edge computer vision, deep learning detection, and text recognition",
-  dataScientific: "Relational schema design, database normalization, and analytics",
-  devTools: "API development, concurrency, version control, and development environments",
-  embeddedSystems: "Microcontrollers, serial protocols, simulation, and embedded Linux",
+  hardwareEmbedded: "Digital logic, HDL synthesis, bare-metal microcontrollers, and embedded Linux",
+  systemsConcurrency: "Low-level systems programming in C/C++, thread synchronization, and Linux environments",
+  aiComputerVision: "Compute-efficient deep learning detection, OCR pipelines, and real-time tracking",
+  dataScientific: "Relational schema design, asynchronous REST APIs, and mathematical computing",
 };

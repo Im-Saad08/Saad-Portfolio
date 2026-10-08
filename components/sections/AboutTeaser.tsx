@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export function AboutTeaser() {
   return (
-    <section className="py-16 border-t border-gray-200" aria-labelledby="about-teaser-heading">
+    <section className="py-20 md:py-24" aria-labelledby="about-teaser-heading">
       <div className="container max-w-3xl">
         <h2 id="about-teaser-heading" className="text-2xl font-bold tracking-tight text-gray-900 mb-3">
           About Saad

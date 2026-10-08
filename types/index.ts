@@ -88,6 +88,7 @@ export interface Project {
   heroImage: string;
   images: string[];
   videoUrl?: string | null;
+  metric?: string;
 }
 
 export interface AdditionalProject {

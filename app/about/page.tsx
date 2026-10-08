@@ -51,9 +51,9 @@ export default function AboutPage() {
         </header>
 
         {/* Narrative */}
-        <section className="mb-14">
-          <h2 className="text-xl font-bold text-gray-900 mb-3">
-            Background & Engineering Focus
+        <section className="mb-20">
+          <h2 className="text-2xl font-bold tracking-tight text-gray-900 mb-3">
+            Background &amp; Engineering Focus
           </h2>
           <div className="space-y-4 text-base text-gray-700 leading-relaxed">
             <p className="font-medium text-gray-900">
@@ -65,62 +65,83 @@ export default function AboutPage() {
           </div>
         </section>
 
-        {/* Education */}
-        <section className="mb-14 pt-10 border-t border-gray-200">
-          <h2 className="text-xl font-bold text-gray-900 mb-4">
-            Academic Background
+        {/* Education & Curriculum */}
+        <section className="mb-20">
+          <h2 className="text-2xl font-bold tracking-tight text-gray-900 mb-2">
+            Academic Foundation
           </h2>
+          <p className="text-base text-gray-600 mb-8">
+            Undergraduate curriculum paired with applied complex engineering projects at NUTECH Islamabad.
+          </p>
 
-          <div className="p-6 rounded-lg border border-gray-200 bg-gray-50/50 mb-6">
+          <div className="mb-8">
             <div className="flex flex-wrap items-baseline justify-between gap-2 mb-1">
-              <h3 className="text-base font-bold text-gray-900">
+              <h3 className="text-lg font-bold text-gray-900">
                 {education.degree}
               </h3>
-              <span className="text-xs text-gray-500">
+              <span className="text-xs text-gray-500 font-medium">
                 CEN Batch 22 (Senior)
               </span>
             </div>
-            <p className="text-sm text-gray-700 font-medium">
+            <p className="text-base text-gray-700">
               {education.university} — {education.location}
             </p>
             <p className="text-xs text-gray-500 mt-1">
               Prior: {education.college.degree}, {education.college.institution}
             </p>
+          </div>
 
-            <div className="mt-4 pt-4 border-t border-gray-200">
-              <h4 className="text-xs font-semibold uppercase tracking-wider text-gray-500 mb-2">
-                Core Coursework Focus
-              </h4>
-              <div className="flex flex-wrap gap-1.5" role="list">
-                {education.focusAreas.slice(0, 6).map((area) => (
-                  <span
-                    key={area}
-                    className="px-2.5 py-1 text-xs text-gray-700 bg-white border border-gray-200 rounded"
-                    role="listitem"
-                  >
-                    {area}
-                  </span>
-                ))}
-              </div>
+          <div className="mb-8">
+            <h4 className="text-sm font-semibold text-gray-900 mb-2">
+              Core Curriculum Focus Areas
+            </h4>
+            <p className="text-sm text-gray-600 leading-relaxed">
+              {education.focusAreas.join(" · ")}
+            </p>
+          </div>
+
+          {/* Department Faculty Photo */}
+          <div>
+            <div className="relative w-full h-64 sm:h-80 md:h-96 rounded-lg overflow-hidden bg-gray-100">
+              <Image
+                src="/story/nutech-cen-faculty.jpg"
+                alt="Muhammad Saad with Computer Engineering faculty and CEN Batch 22 at NUTECH Islamabad"
+                fill
+                sizes="(max-width: 768px) 100vw, 768px"
+                className="object-cover"
+              />
             </div>
+            <p className="text-xs text-gray-500 mt-2.5">
+              Department of Computer Engineering (CEN Batch 22) alongside faculty at NUTECH, Islamabad.
+            </p>
           </div>
         </section>
 
-        {/* Leadership */}
-        <section className="mb-14 pt-10 border-t border-gray-200">
-          <h2 className="text-xl font-bold text-gray-900 mb-2">
-            Leadership & Community
+        {/* Technical Competencies Matrix */}
+        <section className="mb-20">
+          <Skills />
+        </section>
+
+        {/* Chronological Milestones */}
+        <section className="mb-20">
+          <Timeline />
+        </section>
+
+        {/* Civic Leadership & Governance */}
+        <section className="mb-20">
+          <h2 className="text-2xl font-bold tracking-tight text-gray-900 mb-2">
+            Civic Leadership &amp; Community
           </h2>
-          <p className="text-sm text-gray-600 mb-6 leading-relaxed">
+          <p className="text-base text-gray-600 mb-8 leading-relaxed">
             {leadership.intro}
           </p>
 
-          <div className="space-y-6">
+          <div className="space-y-10">
             {jztOrg && (
-              <article className="p-6 rounded-lg border border-gray-200 bg-white">
+              <article>
                 <div className="flex flex-col sm:flex-row sm:items-start gap-4 mb-3">
                   {jztOrg.logo && (
-                    <div className="relative w-10 h-10 rounded overflow-hidden border border-gray-200 bg-white flex-shrink-0">
+                    <div className="relative w-10 h-10 rounded overflow-hidden bg-gray-50 flex-shrink-0">
                       <Image
                         src={jztOrg.logo}
                         alt={`${jztOrg.organization} logo`}
@@ -131,41 +152,43 @@ export default function AboutPage() {
                     </div>
                   )}
                   <div>
-                    <h3 className="text-base font-bold text-gray-900">
+                    <h3 className="text-lg font-bold text-gray-900">
                       {jztOrg.role} — {jztOrg.organization}
                     </h3>
                     <p className="text-xs text-gray-500 mb-2">{jztOrg.fullName}</p>
-                    <p className="text-sm text-gray-600 leading-relaxed">
+                    <p className="text-base text-gray-600 leading-relaxed">
                       {jztOrg.description}
                     </p>
                   </div>
                 </div>
 
                 {jztOrg.gallery && jztOrg.gallery.length > 0 && (
-                  <Gallery images={jztOrg.gallery} title="Initiative Photos" />
+                  <div className="mt-4">
+                    <Gallery images={jztOrg.gallery} title="Initiative Photos" />
+                  </div>
                 )}
               </article>
             )}
 
             {gyfhaOrg && (
-              <article className="p-6 rounded-lg border border-gray-200 bg-white">
-                <h3 className="text-base font-bold text-gray-900 mb-1">
+              <article>
+                <h3 className="text-lg font-bold text-gray-900 mb-1">
                   {gyfhaOrg.role} — {gyfhaOrg.organization}
                 </h3>
                 <p className="text-xs text-gray-500 mb-2">{gyfhaOrg.fullName}</p>
-                <p className="text-sm text-gray-600 leading-relaxed">
+                <p className="text-base text-gray-600 leading-relaxed">
                   {gyfhaOrg.description}
                 </p>
               </article>
             )}
 
             {taxilaOrg && (
-              <article className="p-6 rounded-lg border border-gray-200 bg-white">
-                <h3 className="text-base font-bold text-gray-900 mb-1">
+              <article>
+                <h3 className="text-lg font-bold text-gray-900 mb-1">
                   {taxilaOrg.role} — {taxilaOrg.organization}
                 </h3>
                 <p className="text-xs text-gray-500 mb-2">{taxilaOrg.fullName}</p>
-                <p className="text-sm text-gray-600 leading-relaxed">
+                <p className="text-base text-gray-600 leading-relaxed">
                   {taxilaOrg.description}
                 </p>
               </article>
@@ -173,24 +196,23 @@ export default function AboutPage() {
           </div>
         </section>
 
-        {/* Technical Skills */}
-        <section className="mb-14 pt-10 border-t border-gray-200">
-          <Skills />
-        </section>
-
-        {/* Milestones */}
-        <section className="mb-14 pt-10 border-t border-gray-200">
-          <Timeline />
-        </section>
-
-        {/* Bottom Navigation */}
-        <div className="pt-8 border-t border-gray-200 flex items-center justify-between text-sm">
-          <Link href="/work" className="font-medium text-blue-600 hover:underline">
-            View engineering projects →
-          </Link>
-          <Link href="/notes" className="text-gray-600 hover:text-gray-900">
-            Read technical notes →
-          </Link>
+        {/* Bottom Actions */}
+        <div className="pt-6 mt-16 flex flex-wrap items-center justify-between gap-4 text-sm">
+          <div className="flex items-center gap-5">
+            <Link href="/work" className="font-medium text-blue-600 hover:underline">
+              Explore engineering builds →
+            </Link>
+            <Link href="/notes" className="text-gray-600 hover:text-gray-900">
+              Read writing &amp; heuristics →
+            </Link>
+          </div>
+          <a
+            href="/Saad_CV.pdf"
+            download="Muhammad_Saad_CV.pdf"
+            className="px-4 py-2 bg-gray-900 text-white rounded text-xs font-medium hover:bg-gray-800 transition-colors"
+          >
+            Download Official CV
+          </a>
         </div>
       </div>
     </div>

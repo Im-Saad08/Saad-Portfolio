@@ -16,11 +16,10 @@ export const personalInfo: PersonalInfo = {
 };
 
 export const navItems: NavItem[] = [
-  { id: "about", label: "About", href: "/about" },
   { id: "work", label: "Work", href: "/work" },
   { id: "writing", label: "Writing", href: "/notes" },
+  { id: "about", label: "About", href: "/about" },
   { id: "now", label: "Now", href: "/now" },
-  { id: "contact", label: "Contact", href: "/#contact" },
 ];
 
 export const homeIntro: HomeIntro = {

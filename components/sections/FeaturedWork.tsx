@@ -8,14 +8,14 @@ export function FeaturedWork() {
   const others = projects.filter((p) => !p.featured).slice(0, 2);
 
   return (
-    <section id="work" className="py-16 border-t border-gray-200" aria-labelledby="work-heading">
+    <section id="work" className="py-20 md:py-24" aria-labelledby="work-heading">
       <div className="container">
-        <div className="flex flex-col sm:flex-row sm:items-baseline justify-between mb-10 gap-2">
+        <div className="flex flex-col sm:flex-row sm:items-baseline justify-between mb-12 gap-2">
           <div>
-            <h2 id="work-heading" className="text-2xl font-bold tracking-tight text-gray-900 mb-1">
+            <h2 id="work-heading" className="text-2xl sm:text-3xl font-bold tracking-tight text-gray-900 mb-2">
               Featured Projects
             </h2>
-            <p className="text-sm text-gray-600">
+            <p className="text-base text-gray-600">
               Selected engineering builds across edge computer vision and systems software.
             </p>
           </div>
@@ -24,7 +24,7 @@ export function FeaturedWork() {
           </Link>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-14">
           {featured.map((project) => (
             <ProjectCard key={project.slug} project={project} isFeatured />
           ))}
@@ -47,14 +47,14 @@ export function ProjectCard({
 }) {
   return (
     <article
-      className={`rounded-lg border border-gray-200 bg-white hover:border-gray-300 transition-colors flex flex-col overflow-hidden ${
+      className={`flex flex-col justify-between ${
         isFeatured ? "md:col-span-2" : "md:col-span-1"
       }`}
     >
       {project.heroImage && (
         <Link
           href={`/work/${project.slug}`}
-          className="relative block h-52 sm:h-64 w-full bg-gray-50 border-b border-gray-100"
+          className="relative block h-56 sm:h-72 w-full rounded-lg overflow-hidden bg-gray-100 mb-5"
           aria-label={`View case study: ${project.title}`}
         >
           <Image
@@ -67,42 +67,30 @@ export function ProjectCard({
         </Link>
       )}
 
-      <div className="p-6 flex flex-col flex-1 justify-between">
+      <div className="flex flex-col flex-1 justify-between">
         <div>
-          <div className="flex items-center gap-2 mb-2 text-xs text-gray-500 font-medium">
-            <span>{project.category}</span>
-            {project.featured && (
-              <>
-                <span>•</span>
-                <span className="text-blue-700 font-semibold">Featured Capstone</span>
-              </>
-            )}
-          </div>
-
-          <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-2">
+          <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-2">
             <Link href={`/work/${project.slug}`} className="hover:text-blue-600 transition-colors">
               {project.title}
             </Link>
           </h3>
 
-          <p className="text-sm text-gray-600 leading-relaxed mb-4">
+          <p className="text-base text-gray-600 leading-relaxed mb-3">
             {project.description}
           </p>
 
-          <div className="flex flex-wrap gap-1.5 mb-6" role="list">
-            {project.technologies.slice(0, 6).map((tech) => (
-              <span
-                key={tech}
-                className="px-2 py-0.5 text-xs text-gray-600 bg-gray-100 rounded"
-                role="listitem"
-              >
-                {tech}
-              </span>
-            ))}
-          </div>
+          {project.metric && (
+            <p className="text-xs text-gray-500 font-mono mb-3">
+              Benchmark: <span className="text-gray-800 font-medium">{project.metric}</span>
+            </p>
+          )}
+
+          <p className="text-xs text-gray-500 mb-4">
+            {project.technologies.slice(0, 5).join(" · ")}
+          </p>
         </div>
 
-        <div className="pt-4 border-t border-gray-100 flex items-center justify-between text-sm">
+        <div className="flex items-center justify-between text-sm pt-2">
           <Link
             href={`/work/${project.slug}`}
             className="font-medium text-blue-600 hover:underline"

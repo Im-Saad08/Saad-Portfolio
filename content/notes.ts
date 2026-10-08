@@ -2,23 +2,6 @@ import type { Note } from "@/types";
 
 export const notes: Note[] = [
   {
-    slug: "sentryx-ieee-defense-manuscript",
-    title: "SENTRYX: High-Throughput ALPR on Commodity CPUs (IEEE Report)",
-    category: "Defense Research",
-    published: true,
-    date: "August 2026",
-    excerpt:
-      "A 22-page IEEE-standard technical manuscript detailing how custom YOLOv8n fine-tuning, PaddleOCR dual-candidate parsing, and decoupled threading achieved ~98.5% live verification accuracy at 18–24 FPS without dedicated GPUs.",
-    link: "/docs/SENTRYX-IEEE-Final-Report.pdf",
-    content: `The SENTRYX technical manuscript was authored as the final deliverable for the NESCOM Capstone Internship under Dr. Inayat Ullah Khan. 
-
-Key architectural highlights:
-1. Low-Latency Detection: Fine-tuned YOLOv8n checkpoint achieving 0.991 mAP50, 0.979 Precision, and 1.9 ms detection latency across 1,765 validation images.
-2. Dual-Candidate OCR Engine: Concurrent whole-crop and split-candidate character recognition using PaddleOCR PP-OCRv6, eliminating brittle aspect-ratio heuristics for Pakistani number plates.
-3. Threaded Video Ingestion: Decoupled background worker thread for OCR inference, eliminating OpenCV UI freezing during continuous 1080p stream processing.
-4. Database Integration: Asynchronous FastAPI verification layer connected to Neon Cloud PostgreSQL for authorized whitelist checks and audit logging.`,
-  },
-  {
     slug: "mental-models-engineering-heuristics",
     title: "Mental Models & Operational Engineering Heuristics",
     category: "Systems Thinking",

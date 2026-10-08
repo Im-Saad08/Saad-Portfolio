@@ -11,33 +11,24 @@ export function Skills() {
   return (
     <section id="skills" aria-labelledby="skills-heading">
       <h2 id="skills-heading" className="text-2xl font-bold tracking-tight text-gray-900 mb-2">
-        Technical Skills
+        Technical Competencies
       </h2>
-      <p className="text-sm text-gray-600 mb-8">
-        Competencies grounded in hardware description, embedded firmware, relational data, and edge vision.
+      <p className="text-base text-gray-600 mb-8">
+        Engineering capabilities grounded in hardware description, embedded firmware, relational data, and edge computer vision.
       </p>
 
-      <div className="space-y-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-10">
         {categories.map(([categoryKey, skillList]) => (
-          <div key={categoryKey} className="p-5 rounded-lg border border-gray-200 bg-gray-50/50">
-            <h3 className="text-base font-semibold text-gray-900 mb-1">
+          <div key={categoryKey} className="space-y-2">
+            <h3 className="text-base font-bold text-gray-900">
               {skillCategoryLabels[categoryKey]}
             </h3>
-            <p className="text-xs text-gray-500 mb-3">
+            <p className="text-xs text-gray-500 leading-relaxed">
               {skillCategoryDescriptions[categoryKey]}
             </p>
-
-            <div className="flex flex-wrap gap-2" role="list">
-              {skillList.map((skill: SkillItem) => (
-                <span
-                  key={skill.name}
-                  className="px-2.5 py-1 rounded text-xs font-medium text-gray-700 bg-white border border-gray-200"
-                  role="listitem"
-                >
-                  {skill.name}
-                </span>
-              ))}
-            </div>
+            <p className="text-sm text-gray-800 leading-relaxed pt-1">
+              {skillList.map((skill: SkillItem) => skill.name).join(" · ")}
+            </p>
           </div>
         ))}
       </div>

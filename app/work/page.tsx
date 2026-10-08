@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { getAllProjects, additionalProjects } from "@/lib/content";
+import { getAllProjects, additionalProjects } from "@/projects";
 import { ProjectCard } from "@/components/sections/FeaturedWork";
 import { constructMetadata } from "@/lib/metadata";
 
@@ -26,42 +26,61 @@ export default function WorkPage() {
           </p>
         </header>
 
-        {/* Main Projects Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-16">
-          {projects.map((project, index) => (
-            <ProjectCard key={project.slug} project={project} isFeatured={index === 0} />
-          ))}
-        </div>
+        {/* Major Systems & Deployments */}
+        <section className="mb-20">
+          <div className="mb-10">
+            <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-gray-900 mb-2">
+              Major Systems & Field Deployments
+            </h2>
+            <p className="text-base text-gray-600 max-w-2xl">
+              High-throughput computer vision pipelines and automation platforms engineered under real hardware constraints.
+            </p>
+          </div>
 
-        {/* Additional Projects Section */}
-        <section className="pt-12 border-t border-gray-200">
-          <h2 className="text-xl font-bold tracking-tight text-gray-900 mb-2">
-            Coursework & Lab Projects
-          </h2>
-          <p className="text-sm text-gray-600 max-w-xl mb-6">
-            Complex Engineering Projects (CEPs) across microcontrollers, control engineering, and embedded Linux.
-          </p>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-14">
+            {projects
+              .filter((p) => p.featured || p.slug === "industrial-vision-fyp")
+              .map((project, index) => (
+                <ProjectCard key={project.slug} project={project} isFeatured={index === 0} />
+              ))}
+          </div>
+        </section>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        {/* Systems Software, Signal Processing & Embedded Primitives */}
+        <section className="mt-20 md:mt-24">
+          <div className="mb-10">
+            <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-gray-900 mb-2">
+              Systems Software, Signal Processing & Embedded Primitives
+            </h2>
+            <p className="text-base text-gray-600 max-w-2xl">
+              Low-level C concurrency, digital image processing, microcontroller firmware, and kernel configurations.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-14">
+            {projects
+              .filter((p) => !p.featured && p.slug !== "industrial-vision-fyp")
+              .map((project) => (
+                <ProjectCard key={project.slug} project={project} />
+              ))}
+
             {additionalProjects.map((item) => (
               <article
                 key={item.title}
-                className="p-5 rounded-lg border border-gray-200 bg-white flex flex-col justify-between"
+                className="flex flex-col justify-between"
               >
                 <div>
-                  <h3 className="text-base font-bold text-gray-900 mb-1.5">{item.title}</h3>
-                  <p className="text-sm text-gray-600 leading-relaxed mb-4">{item.description}</p>
+                  <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-2">
+                    {item.title}
+                  </h3>
+                  <p className="text-base text-gray-600 leading-relaxed mb-4">
+                    {item.description}
+                  </p>
                 </div>
-                <div className="flex flex-wrap gap-1.5 pt-3 border-t border-gray-100" role="list">
-                  {item.technologies.map((tech) => (
-                    <span
-                      key={tech}
-                      className="px-2 py-0.5 text-xs text-gray-600 bg-gray-100 rounded"
-                      role="listitem"
-                    >
-                      {tech}
-                    </span>
-                  ))}
+                <div className="pt-1">
+                  <p className="text-xs text-gray-500">
+                    {item.technologies.join(" · ")}
+                  </p>
                 </div>
               </article>
             ))}
