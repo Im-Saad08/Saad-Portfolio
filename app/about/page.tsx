@@ -27,7 +27,7 @@ export default function AboutPage() {
         {/* Header Profile Section */}
         <header className="mb-14 pb-10 border-b border-border">
           <div className="flex flex-col sm:flex-row items-start gap-6 sm:gap-8 mb-6">
-            <div className="relative w-28 h-28 sm:w-36 sm:h-36 rounded-2xl overflow-hidden border border-border bg-surface-subtle ring-4 ring-surface-subtle flex-shrink-0 shadow-xs">
+            <div className="relative w-28 h-28 sm:w-36 sm:h-36 rounded-3xl overflow-hidden border-2 border-surface-subtle ring-4 ring-surface-subtle/80 flex-shrink-0 shadow-md">
               <Image
                 src="/profile.jpg"
                 alt="Muhammad Saad"
@@ -39,10 +39,12 @@ export default function AboutPage() {
             </div>
 
             <div className="space-y-2">
-              <div className="flex items-center gap-2 text-xs font-mono font-medium text-ink-subtle uppercase tracking-wider">
-                <span>Undergraduate Engineer</span>
-                <span>·</span>
-                <span>CEN Batch 22</span>
+              <div className={theme.styles.statusPill}>
+                <span className="relative flex h-2 w-2">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary/40 opacity-75" />
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-primary" />
+                </span>
+                <span className="text-ink-subtle">Islamabad · Senior CEN @ NUTECH</span>
               </div>
 
               <h1 className="text-3xl sm:text-4xl font-bold tracking-tight text-ink">
@@ -80,15 +82,15 @@ export default function AboutPage() {
 
         {/* Narrative / Engineering Philosophy */}
         <section className="mb-20" aria-labelledby="narrative-heading">
-          <p className={`${theme.styles.kicker} mb-1`}>
+          <div className="text-xs font-mono font-medium text-ink-subtle uppercase tracking-wider mb-1">
             Origins &amp; Philosophy
-          </p>
+          </div>
           <h2 id="narrative-heading" className="text-2xl font-bold tracking-tight text-ink mb-4">
             Background &amp; Engineering Focus
             <span className={theme.styles.headingDot}>.</span>
           </h2>
 
-          <div className={`${theme.styles.cardLg} space-y-4 text-sm sm:text-base text-ink-muted leading-relaxed`}>
+          <div className={`${theme.styles.cardCozy} space-y-4 text-sm sm:text-base text-ink-muted leading-relaxed`}>
             <p className="font-semibold text-ink text-base sm:text-lg">
               {story.opening}
             </p>
@@ -176,11 +178,11 @@ export default function AboutPage() {
 
         {/* Civic Leadership & Governance */}
         <section className="mb-20" aria-labelledby="leadership-heading">
-          <p className={`${theme.styles.kicker} mb-1`}>
+          <div className="text-xs font-mono font-medium text-ink-subtle uppercase tracking-wider mb-1">
             Community &amp; Civic Governance
-          </p>
+          </div>
           <h2 id="leadership-heading" className="text-2xl font-bold tracking-tight text-ink mb-2">
-            Civic Leadership &amp; Advocacy
+            Civic Leadership &amp; Student Advocacy
             <span className={theme.styles.headingDot}>.</span>
           </h2>
           <p className="text-sm text-ink-muted mb-8 leading-relaxed">
@@ -189,7 +191,7 @@ export default function AboutPage() {
 
           <div className="space-y-6">
             {jztOrg && (
-              <article className={theme.styles.cardLg}>
+              <article className={theme.styles.cardCozy}>
                 <div className="flex flex-col sm:flex-row sm:items-start gap-4 mb-4">
                   {jztOrg.logo && (
                     <div className="relative w-12 h-12 rounded-xl overflow-hidden border border-border bg-surface-subtle flex-shrink-0">
@@ -226,7 +228,7 @@ export default function AboutPage() {
             )}
 
             {gyfhaOrg && (
-              <article className={theme.styles.cardLg}>
+              <article className={theme.styles.cardCozy}>
                 <div className="flex items-center gap-2 text-xs font-mono text-primary font-semibold mb-1">
                   <Users size={13} />
                   <span>{gyfhaOrg.role}</span>
@@ -242,7 +244,7 @@ export default function AboutPage() {
             )}
 
             {taxilaOrg && (
-              <article className={theme.styles.cardLg}>
+              <article className={theme.styles.cardCozy}>
                 <div className="flex items-center gap-2 text-xs font-mono text-ink-subtle font-semibold mb-1">
                   <Users size={13} />
                   <span>{taxilaOrg.role}</span>

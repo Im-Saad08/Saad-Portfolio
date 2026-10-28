@@ -90,9 +90,9 @@ export function Footer() {
 
         {/* Colophon & Archival Notice */}
         <div className="pt-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 text-xs text-ink-subtle">
-          <p>© {currentYear} Muhammad Saad. All technical milestones and empirical benchmarks verified.</p>
+          <p>© {currentYear} Muhammad Saad. Handcrafted with care in Islamabad.</p>
           <p className="font-mono text-[11px]">
-            National University of Technology · Islamabad
+            Senior CEN Batch 22 · NUTECH Islamabad
           </p>
         </div>
       </div>

@@ -2,7 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { getAllProjects, type Project } from "@/lib/content";
 import { theme } from "@/lib/theme";
-import { ArrowRight, FileText, CheckCircle2 } from "lucide-react";
+import { ArrowRight, FileText, CheckCircle2, Sparkles } from "lucide-react";
 
 export function FeaturedWork() {
   const projects = getAllProjects();
@@ -15,13 +15,16 @@ export function FeaturedWork() {
         {/* Section Header */}
         <div className={theme.styles.sectionHeader}>
           <div>
-            <p className={theme.styles.kicker}>
+            <div className="text-xs font-mono font-medium text-ink-subtle uppercase tracking-wider mb-1">
               Field Deployments &amp; Applied Systems
-            </p>
+            </div>
             <h2 id="work-heading" className="text-2xl sm:text-3xl font-bold tracking-tight text-ink mt-1">
-              Featured Projects
+              Featured Engineering Work
               <span className={theme.styles.headingDot}>.</span>
             </h2>
+            <p className="text-sm text-ink-muted mt-1 max-w-xl">
+              Real hardware builds and edge inference pipelines — optimized for commodity CPUs and benchmarked at NUTECH.
+            </p>
           </div>
           <Link
             href="/work"
@@ -31,7 +34,7 @@ export function FeaturedWork() {
           </Link>
         </div>
 
-        {/* Project Grid */}
+        {/* Dynamic Project Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10">
           {featured.map((project) => (
             <ProjectCard key={project.slug} project={project} isFeatured />
@@ -55,14 +58,14 @@ export function ProjectCard({
 }) {
   return (
     <article
-      className={`group rounded-xl overflow-hidden bg-surface border border-border hover:border-border-strong transition-all shadow-xs flex flex-col justify-between ${
+      className={`group rounded-2xl overflow-hidden bg-surface border border-border/80 shadow-[0_2px_12px_rgba(17,22,27,0.03)] hover:shadow-[0_6px_24px_rgba(24,90,55,0.07)] hover:border-border-strong transition-all duration-300 flex flex-col justify-between ${
         isFeatured ? "md:col-span-2 lg:grid lg:grid-cols-12 lg:items-stretch" : "md:col-span-1"
       }`}
     >
       {/* Project Hero Media */}
       {project.heroImage && (
         <div
-          className={`relative overflow-hidden bg-surface-subtle border-b md:border-b-0 border-border ${
+          className={`relative overflow-hidden bg-surface-subtle border-b md:border-b-0 border-border/70 ${
             isFeatured
               ? "lg:col-span-6 h-64 sm:h-80 lg:h-full lg:border-r"
               : "h-56 sm:h-64 border-b"
@@ -85,24 +88,29 @@ export function ProjectCard({
               className="object-cover group-hover:scale-[1.02] transition-transform duration-300"
             />
           </Link>
+
+          {isFeatured && (
+            <div className="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-ink/80 backdrop-blur-md text-white text-[11px] font-mono flex items-center gap-1.5 shadow-sm">
+              <Sparkles size={11} className="text-emerald-400" />
+              <span>Flagship Capstone</span>
+            </div>
+          )}
         </div>
       )}
 
       {/* Project Content */}
       <div
-        className={`p-6 sm:p-7 flex flex-col justify-between ${
+        className={`p-6 sm:p-8 flex flex-col justify-between ${
           isFeatured ? "lg:col-span-6" : ""
         }`}
       >
         <div>
           {/* Metadata Header */}
-          <div className="flex flex-wrap items-center justify-between gap-2 text-xs font-mono text-ink-subtle mb-2.5">
-            <span className="uppercase tracking-wider">{project.category}</span>
-            {isFeatured && (
-              <span className={theme.styles.badgePrimary}>
-                Flagship Capstone
-              </span>
-            )}
+          <div className="flex flex-wrap items-center justify-between gap-2 text-xs font-mono text-ink-subtle mb-3">
+            <span className="uppercase tracking-wider font-medium">{project.category}</span>
+            <span className={theme.styles.badgeWarm}>
+              {isFeatured ? "NESCOM Capstone" : "NUTECH Engineering"}
+            </span>
           </div>
 
           <h3 className="text-xl sm:text-2xl font-bold tracking-tight text-ink mb-2.5 group-hover:text-primary transition-colors leading-snug">
@@ -118,7 +126,7 @@ export function ProjectCard({
           {/* Benchmark Callout */}
           {project.metric && (
             <div className={`my-4 ${theme.styles.benchmarkCallout}`}>
-              <CheckCircle2 size={14} className="text-primary flex-shrink-0" />
+              <CheckCircle2 size={15} className="text-primary flex-shrink-0" />
               <div className="truncate">
                 <span className="text-ink-subtle">Benchmark: </span>
                 <span className="font-semibold text-ink">{project.metric}</span>
@@ -145,7 +153,7 @@ export function ProjectCard({
             href={`/work/${project.slug}`}
             className={theme.styles.linkText}
           >
-            <span>Read case study</span>
+            <span>Read technical case study</span>
             <ArrowRight size={13} />
           </Link>
 

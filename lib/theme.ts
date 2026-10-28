@@ -38,17 +38,17 @@ export const theme = {
   styles: {
     // Action CTAs
     buttonPrimary:
-      "inline-flex items-center gap-2 px-5 py-2.5 bg-primary text-white text-sm font-medium rounded hover:bg-primary-hover transition-colors shadow-xs focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focus",
+      "inline-flex items-center gap-2 px-5 py-2.5 bg-primary text-white text-sm font-medium rounded-lg hover:bg-primary-hover hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200 shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focus",
     buttonPrimarySm:
-      "inline-flex items-center gap-2 px-4 py-2 bg-primary text-white text-xs font-mono font-medium rounded hover:bg-primary-hover transition-colors shadow-xs focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focus",
+      "inline-flex items-center gap-2 px-4 py-2 bg-primary text-white text-xs font-mono font-medium rounded-md hover:bg-primary-hover hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200 shadow-xs focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focus",
     buttonSecondary:
-      "inline-flex items-center gap-2 px-4 py-2.5 border border-border bg-surface text-ink text-sm font-medium rounded hover:bg-surface-subtle hover:border-border-strong transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focus",
+      "inline-flex items-center gap-2 px-4 py-2.5 border border-border bg-surface text-ink text-sm font-medium rounded-lg hover:bg-surface-subtle hover:border-border-strong hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200 shadow-2xs focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focus",
     buttonSecondarySm:
-      "inline-flex items-center gap-1.5 px-3 py-1.5 border border-border bg-surface-subtle text-ink text-xs font-mono font-medium rounded hover:bg-surface-recessed hover:border-border-strong transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focus",
+      "inline-flex items-center gap-1.5 px-3 py-1.5 border border-border bg-surface-subtle text-ink text-xs font-mono font-medium rounded-md hover:bg-surface-recessed hover:border-border-strong transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focus",
     buttonTertiary:
-      "inline-flex items-center gap-2 px-4 py-2.5 border border-primary/30 bg-primary/5 text-primary text-xs font-mono font-medium rounded hover:bg-primary/10 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focus",
+      "inline-flex items-center gap-2 px-4 py-2.5 border border-primary/30 bg-primary/5 text-primary text-xs font-mono font-medium rounded-lg hover:bg-primary/10 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focus",
     buttonGhost:
-      "inline-flex items-center gap-1.5 px-3 py-2 text-sm font-medium text-ink-muted hover:text-ink transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focus",
+      "inline-flex items-center gap-1.5 px-3 py-2 text-sm font-medium text-ink-muted hover:text-ink hover:bg-surface-subtle/70 rounded-lg transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focus",
     linkText:
       "font-semibold text-ink hover:text-primary inline-flex items-center gap-1.5 transition-colors",
     linkMono:
@@ -56,13 +56,19 @@ export const theme = {
 
     // Cards & Content Wells
     card:
-      "p-6 sm:p-7 rounded-xl bg-surface border border-border shadow-xs hover:border-border-strong transition-all",
+      "p-6 sm:p-7 rounded-2xl bg-surface border border-border/80 shadow-[0_2px_12px_rgba(17,22,27,0.03)] hover:shadow-[0_4px_20px_rgba(24,90,55,0.06)] hover:border-border-strong transition-all duration-300",
     cardLg:
-      "p-7 sm:p-8 rounded-2xl bg-surface border border-border shadow-xs hover:border-border-strong transition-all",
+      "p-7 sm:p-8 rounded-2xl bg-surface border border-border/80 shadow-[0_2px_12px_rgba(17,22,27,0.03)] hover:shadow-[0_4px_20px_rgba(24,90,55,0.06)] hover:border-border-strong transition-all duration-300",
+    cardCozy:
+      "p-6 sm:p-8 rounded-2xl bg-surface border border-border/80 shadow-[0_2px_12px_rgba(17,22,27,0.03)] hover:shadow-[0_4px_20px_rgba(24,90,55,0.06)] hover:border-border-strong transition-all duration-300",
+    cardElevated:
+      "p-7 sm:p-9 rounded-3xl bg-surface border border-border shadow-[0_4px_24px_rgba(17,22,27,0.04)] hover:shadow-[0_8px_32px_rgba(24,90,55,0.08)] hover:border-primary/40 transition-all duration-300",
     cardCompact:
       "p-5 rounded-xl bg-surface border border-border shadow-xs",
     cardStatic:
-      "p-6 rounded-xl bg-surface border border-border shadow-xs",
+      "p-6 rounded-2xl bg-surface border border-border/80 shadow-[0_2px_10px_rgba(17,22,27,0.02)]",
+    quoteCozy:
+      "p-5 sm:p-6 rounded-2xl bg-surface-subtle/80 border border-border/70 text-sm text-ink-muted leading-relaxed italic",
 
     // Typography
     kicker:
@@ -76,15 +82,19 @@ export const theme = {
 
     // Chips, Badges & Indicators
     chip:
-      "px-2 py-0.5 rounded text-[11px] font-mono bg-surface-subtle text-ink-muted border border-border/60",
+      "px-2.5 py-1 rounded-md text-[11px] font-mono bg-surface-subtle text-ink-muted border border-border/60",
     chipLg:
-      "px-2.5 py-1 rounded text-xs font-mono bg-surface-subtle text-ink border border-border/70 font-medium",
+      "px-3 py-1.5 rounded-lg text-xs font-mono bg-surface-subtle text-ink border border-border/70 font-medium",
     badgeFlagship:
-      "px-2 py-0.5 rounded bg-primary/10 text-primary font-semibold text-[11px] font-mono",
+      "px-2.5 py-1 rounded-full bg-primary/10 text-primary font-semibold text-[11px] font-mono",
     badgePrimary:
-      "px-2 py-0.5 rounded bg-primary/10 text-primary font-semibold text-[11px] font-mono",
+      "px-2.5 py-1 rounded-full bg-primary/10 text-primary font-semibold text-[11px] font-mono",
+    badgeWarm:
+      "px-2.5 py-1 rounded-full bg-surface-subtle border border-border text-ink-muted font-medium text-xs font-mono",
+    statusPill:
+      "inline-flex items-center gap-2 px-3 py-1 rounded-full bg-surface border border-border text-xs font-mono shadow-2xs",
     benchmarkCallout:
-      "p-2.5 rounded bg-surface-subtle border border-border flex items-center gap-2 text-xs font-mono",
+      "p-3 rounded-xl bg-surface-subtle border border-border/70 flex items-center gap-2.5 text-xs font-mono",
 
     // Structural Dividers
     sectionDivider:

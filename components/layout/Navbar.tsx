@@ -53,7 +53,7 @@ export function Navbar() {
             onClick={closeMenu}
             aria-label="Muhammad Saad — Portfolio Homepage"
           >
-            <span className="w-7 h-7 flex items-center justify-center rounded border border-ink/20 bg-ink text-white font-mono text-xs font-semibold tracking-wider">
+            <span className="w-7 h-7 flex items-center justify-center rounded-lg border border-primary/20 bg-primary text-white font-mono text-xs font-bold tracking-wider shadow-2xs">
               S
             </span>
             <div className="flex items-baseline gap-1.5">
@@ -100,7 +100,12 @@ export function Navbar() {
           </div>
 
           {/* Right Desktop Actions */}
-          <div className="hidden md:flex items-center gap-3">
+          <div className="hidden md:flex items-center gap-4">
+            <div className="hidden lg:flex items-center gap-2 text-xs font-mono text-ink-subtle">
+              <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
+              <span>Available for Work</span>
+            </div>
+
             <a
               href="/Saad_CV.pdf"
               download="Muhammad_Saad_CV.pdf"
