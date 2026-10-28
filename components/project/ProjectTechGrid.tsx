@@ -10,13 +10,20 @@ export function ProjectTechGrid({
   if (!technologies || technologies.length === 0) return null;
 
   return (
-    <div className="my-8">
-      <h3 className="text-base font-bold text-gray-900 mb-2">
+    <div className="my-10 p-6 rounded-xl bg-[#ffffff] border border-[#e6e4dc] shadow-[0_1px_2px_rgba(21,25,39,0.02)]">
+      <h3 className="text-xs font-mono font-semibold uppercase tracking-wider text-[#767d8f] mb-3">
         {title}
       </h3>
-      <p className="text-sm text-gray-700 leading-relaxed">
-        {technologies.join(" · ")}
-      </p>
+      <div className="flex flex-wrap gap-2">
+        {technologies.map((tech) => (
+          <span
+            key={tech}
+            className="px-2.5 py-1 rounded text-xs font-mono bg-[#f4f3ef] text-[#151927] border border-[#e6e4dc]/70 font-medium"
+          >
+            {tech}
+          </span>
+        ))}
+      </div>
     </div>
   );
 }

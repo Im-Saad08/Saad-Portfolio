@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { getAllProjects, type Project } from "@/lib/content";
+import { ArrowRight, FileText, CheckCircle2 } from "lucide-react";
 
 export function FeaturedWork() {
   const projects = getAllProjects();
@@ -10,21 +11,27 @@ export function FeaturedWork() {
   return (
     <section id="work" className="py-20 md:py-24" aria-labelledby="work-heading">
       <div className="container">
-        <div className="flex flex-col sm:flex-row sm:items-baseline justify-between mb-12 gap-2">
+        {/* Section Header */}
+        <div className="flex flex-col sm:flex-row sm:items-baseline justify-between mb-12 gap-3 pb-4 border-b border-[#e6e4dc]">
           <div>
-            <h2 id="work-heading" className="text-2xl sm:text-3xl font-bold tracking-tight text-gray-900 mb-2">
-              Featured Projects
-            </h2>
-            <p className="text-base text-gray-600">
-              Selected engineering builds across edge computer vision and systems software.
+            <p className="text-xs font-mono font-medium uppercase tracking-wider text-[#767d8f] mb-1">
+              Field Deployments &amp; Applied Systems
             </p>
+            <h2 id="work-heading" className="text-2xl sm:text-3xl font-bold tracking-tight text-[#151927]">
+              Featured Projects
+              <span className="text-[#c94a2f]">.</span>
+            </h2>
           </div>
-          <Link href="/work" className="text-sm font-medium text-blue-600 hover:underline">
-            View all projects →
+          <Link
+            href="/work"
+            className="inline-flex items-center gap-1.5 text-xs font-mono font-medium text-[#151927] hover:text-[#c94a2f] transition-colors"
+          >
+            <span>View all engineering builds →</span>
           </Link>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-14">
+        {/* Project Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10">
           {featured.map((project) => (
             <ProjectCard key={project.slug} project={project} isFeatured />
           ))}
@@ -47,55 +54,98 @@ export function ProjectCard({
 }) {
   return (
     <article
-      className={`flex flex-col justify-between ${
-        isFeatured ? "md:col-span-2" : "md:col-span-1"
+      className={`group rounded-xl overflow-hidden bg-[#ffffff] border border-[#e6e4dc] hover:border-[#d2cfbe] transition-all shadow-[0_1px_3px_rgba(21,25,39,0.02)] flex flex-col justify-between ${
+        isFeatured ? "md:col-span-2 lg:grid lg:grid-cols-12 lg:items-stretch" : "md:col-span-1"
       }`}
     >
+      {/* Project Hero Media */}
       {project.heroImage && (
-        <Link
-          href={`/work/${project.slug}`}
-          className="relative block h-56 sm:h-72 w-full rounded-lg overflow-hidden bg-gray-100 mb-5"
-          aria-label={`View case study: ${project.title}`}
+        <div
+          className={`relative overflow-hidden bg-[#f4f3ef] border-b md:border-b-0 border-[#e6e4dc] ${
+            isFeatured
+              ? "lg:col-span-6 h-64 sm:h-80 lg:h-full lg:border-r"
+              : "h-56 sm:h-64 border-b"
+          }`}
         >
-          <Image
-            src={project.heroImage}
-            alt={project.title}
-            fill
-            sizes={isFeatured ? "(max-width: 1024px) 100vw, 1080px" : "(max-width: 768px) 100vw, 540px"}
-            className="object-cover"
-          />
-        </Link>
+          <Link
+            href={`/work/${project.slug}`}
+            className="relative block w-full h-full"
+            aria-label={`View case study: ${project.title}`}
+          >
+            <Image
+              src={project.heroImage}
+              alt={project.title}
+              fill
+              sizes={
+                isFeatured
+                  ? "(max-width: 1024px) 100vw, 540px"
+                  : "(max-width: 768px) 100vw, 540px"
+              }
+              className="object-cover group-hover:scale-[1.02] transition-transform duration-300"
+            />
+          </Link>
+        </div>
       )}
 
-      <div className="flex flex-col flex-1 justify-between">
+      {/* Project Content */}
+      <div
+        className={`p-6 sm:p-7 flex flex-col justify-between ${
+          isFeatured ? "lg:col-span-6" : ""
+        }`}
+      >
         <div>
-          <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-2">
-            <Link href={`/work/${project.slug}`} className="hover:text-blue-600 transition-colors">
+          {/* Metadata Header */}
+          <div className="flex flex-wrap items-center justify-between gap-2 text-xs font-mono text-[#767d8f] mb-2.5">
+            <span className="uppercase tracking-wider">{project.category}</span>
+            {isFeatured && (
+              <span className="px-2 py-0.5 rounded bg-[#c94a2f]/10 text-[#c94a2f] font-semibold text-[11px]">
+                Flagship Capstone
+              </span>
+            )}
+          </div>
+
+          <h3 className="text-xl sm:text-2xl font-bold tracking-tight text-[#151927] mb-2.5 group-hover:text-[#c94a2f] transition-colors leading-snug">
+            <Link href={`/work/${project.slug}`}>
               {project.title}
             </Link>
           </h3>
 
-          <p className="text-base text-gray-600 leading-relaxed mb-3">
+          <p className="text-sm sm:text-base text-[#535a6c] leading-relaxed mb-4">
             {project.description}
           </p>
 
+          {/* Benchmark Callout */}
           {project.metric && (
-            <p className="text-xs text-gray-500 font-mono mb-3">
-              Benchmark: <span className="text-gray-800 font-medium">{project.metric}</span>
-            </p>
+            <div className="mb-5 p-2.5 rounded bg-[#f4f3ef] border border-[#e6e4dc] flex items-center gap-2 text-xs font-mono">
+              <CheckCircle2 size={14} className="text-[#c94a2f] flex-shrink-0" />
+              <div className="truncate">
+                <span className="text-[#767d8f]">Benchmark: </span>
+                <span className="font-semibold text-[#151927]">{project.metric}</span>
+              </div>
+            </div>
           )}
 
-          <p className="text-xs text-gray-500 mb-4">
-            {project.technologies.slice(0, 5).join(" · ")}
-          </p>
+          {/* Tech Stack Chips */}
+          <div className="flex flex-wrap gap-1.5 mb-6">
+            {project.technologies.slice(0, 6).map((tech) => (
+              <span
+                key={tech}
+                className="px-2 py-0.5 rounded text-[11px] font-mono bg-[#f4f3ef] text-[#535a6c] border border-[#e6e4dc]/60"
+              >
+                {tech}
+              </span>
+            ))}
+          </div>
         </div>
 
-        <div className="flex items-center justify-between text-sm pt-2">
+        {/* Action Bar */}
+        <div className="flex items-center justify-between text-xs pt-4 border-t border-[#f0eee7]">
           <Link
             href={`/work/${project.slug}`}
-            className="font-medium text-blue-600 hover:underline"
+            className="font-semibold text-[#151927] hover:text-[#c94a2f] inline-flex items-center gap-1.5 transition-colors group-hover:underline"
           >
-            Read case study →
+            <span>Read case study</span>
+            <ArrowRight size={13} />
           </Link>
 
           {project.reportUrl && (
@@ -103,9 +153,10 @@ export function ProjectCard({
               href={project.reportUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-xs text-gray-500 hover:text-gray-900 transition-colors"
+              className="inline-flex items-center gap-1.5 text-[#767d8f] hover:text-[#151927] transition-colors font-mono"
             >
-              IEEE Report (PDF)
+              <FileText size={13} />
+              <span>IEEE Report (PDF)</span>
             </a>
           )}
         </div>

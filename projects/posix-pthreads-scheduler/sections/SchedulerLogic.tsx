@@ -2,44 +2,60 @@ import { schedulerDetails } from "../content";
 
 export function SchedulerLogic() {
   return (
-    <section className="space-y-6">
-      <h2 className="text-xl sm:text-2xl font-bold text-gray-900 tracking-tight">
+    <section className="space-y-6 pt-4">
+      <div className="p-4 rounded-lg bg-[#f4f3ef] border border-[#e6e4dc] text-xs font-mono text-[#151927]">
+        <span className="text-[#767d8f]">Academic Coursework: </span>
+        <span className="font-semibold">{schedulerDetails.course}</span>
+      </div>
+
+      <h2 className="text-xl sm:text-2xl font-bold text-[#151927] tracking-tight pt-2">
         Concurrency Architecture &amp; Scheduling Algorithms
       </h2>
 
-      <p className="text-sm font-medium text-gray-500">
-        {schedulerDetails.course}
-      </p>
-
-      <p className="text-base text-gray-700 leading-relaxed">
+      <p className="text-sm sm:text-base text-[#535a6c] leading-relaxed">
         {schedulerDetails.summary}
       </p>
 
       {/* POSIX Primitives */}
-      <div className="my-6">
-        <h3 className="text-base font-bold text-gray-900 mb-3">
+      <div className="my-6 p-5 rounded-xl bg-[#ffffff] border border-[#e6e4dc] shadow-[0_1px_2px_rgba(21,25,39,0.02)]">
+        <h3 className="text-xs font-mono font-semibold uppercase tracking-wider text-[#767d8f] mb-3">
           Low-Level POSIX C Primitives Implemented
         </h3>
-        <p className="text-sm text-gray-700 leading-relaxed font-mono">
-          {schedulerDetails.primitives.join(" · ")}
-        </p>
+        <div className="flex flex-wrap gap-2">
+          {schedulerDetails.primitives.map((prim) => (
+            <span
+              key={prim}
+              className="px-2.5 py-1 rounded text-xs font-mono bg-[#f4f3ef] text-[#151927] border border-[#e6e4dc]/70"
+            >
+              {prim}
+            </span>
+          ))}
+        </div>
       </div>
 
       {/* Algorithms */}
-      <div className="space-y-6 my-6">
-        <h3 className="text-base font-bold text-gray-900">
+      <div className="my-8">
+        <h3 className="text-lg font-bold text-[#151927] mb-4">
           Simulated CPU Scheduling Policies
         </h3>
-        {schedulerDetails.algorithms.map((alg, idx) => (
-          <div key={idx}>
-            <h4 className="text-base font-bold text-gray-900 mb-1">
-              {alg.name}
-            </h4>
-            <p className="text-base text-gray-600 leading-relaxed">
-              {alg.description}
-            </p>
-          </div>
-        ))}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          {schedulerDetails.algorithms.map((alg, idx) => (
+            <div
+              key={idx}
+              className="p-5 rounded-xl bg-[#ffffff] border border-[#e6e4dc] shadow-[0_1px_2px_rgba(21,25,39,0.02)]"
+            >
+              <div className="font-mono text-xs font-bold text-[#c94a2f] mb-1">
+                Policy 0{idx + 1}
+              </div>
+              <h4 className="text-base font-bold text-[#151927] mb-2">
+                {alg.name}
+              </h4>
+              <p className="text-xs sm:text-sm text-[#535a6c] leading-relaxed">
+                {alg.description}
+              </p>
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   );

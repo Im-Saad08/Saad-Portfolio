@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { ArrowLeft, CheckCircle2 } from "lucide-react";
 
 interface ProjectHeaderProps {
   category: string;
@@ -14,36 +15,45 @@ export function ProjectHeader({
   title,
   description,
   metric,
-  breadcrumbLabel = "← Back to all projects",
+  breadcrumbLabel = "Back to engineering projects",
   breadcrumbHref = "/work",
 }: ProjectHeaderProps) {
   return (
     <header className="mb-10">
       {/* Navigation Breadcrumb */}
-      <div className="mb-8">
+      <div className="mb-6">
         <Link
           href={breadcrumbHref}
-          className="text-sm font-medium text-gray-500 hover:text-gray-900 transition-colors"
+          className="inline-flex items-center gap-1.5 text-xs font-mono font-medium text-[#767d8f] hover:text-[#151927] transition-colors"
         >
-          {breadcrumbLabel}
+          <ArrowLeft size={13} />
+          <span>{breadcrumbLabel}</span>
         </Link>
       </div>
 
-      <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-gray-900 mb-3 leading-tight">
+      {/* Category Kicker */}
+      <div className="flex items-center gap-2 text-xs font-mono font-medium text-[#767d8f] uppercase tracking-wider mb-2">
+        <span>{category}</span>
+        <span>·</span>
+        <span>Technical Case Study</span>
+      </div>
+
+      <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-[#151927] mb-4 leading-tight">
         {title}
+        <span className="text-[#c94a2f]">.</span>
       </h1>
 
-      <p className="text-sm font-medium text-gray-500 mb-4">
-        {category}
-      </p>
-
       {metric && (
-        <p className="text-xs text-gray-500 font-mono mb-4">
-          Benchmark: <span className="text-gray-900 font-medium">{metric}</span>
-        </p>
+        <div className="mb-6 inline-flex items-center gap-2.5 px-3.5 py-2 rounded-lg bg-[#ffffff] border border-[#e6e4dc] shadow-[0_1px_2px_rgba(21,25,39,0.02)]">
+          <CheckCircle2 size={16} className="text-[#c94a2f] flex-shrink-0" />
+          <div className="text-xs font-mono">
+            <span className="text-[#767d8f]">Empirical Benchmark: </span>
+            <span className="font-semibold text-[#151927]">{metric}</span>
+          </div>
+        </div>
       )}
 
-      <p className="text-base sm:text-lg text-gray-600 leading-relaxed max-w-2xl">
+      <p className="text-base sm:text-lg text-[#535a6c] leading-relaxed max-w-3xl">
         {description}
       </p>
     </header>

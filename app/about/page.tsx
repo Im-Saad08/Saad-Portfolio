@@ -6,11 +6,12 @@ import { constructMetadata } from "@/lib/metadata";
 import { Gallery } from "@/components/ui/Gallery";
 import { Skills } from "@/components/sections/Skills";
 import { Timeline } from "@/components/sections/Timeline";
+import { ArrowRight, FileText, GraduationCap, Users } from "lucide-react";
 
 export const metadata: Metadata = constructMetadata({
   title: "About — Engineering, Background & Leadership",
   description:
-    "Personal narrative, academic background at NUTECH, student volunteer leadership with JZT and GYFHA, technical competencies, and engineering journey of Muhammad Saad.",
+    "Personal narrative, academic foundation at NUTECH, student volunteer leadership with JZT and GYFHA, technical competencies, and engineering journey of Muhammad Saad.",
   canonicalUrl: "https://mohtarmsaad.com/about",
 });
 
@@ -22,41 +23,72 @@ export default function AboutPage() {
   return (
     <div className="pt-24 pb-20">
       <div className="container max-w-3xl">
-        {/* Header */}
-        <header className="mb-12">
-          <div className="flex flex-col sm:flex-row items-start gap-6 mb-6">
-            <div className="relative w-28 h-28 sm:w-32 sm:h-32 rounded-full overflow-hidden border border-gray-200 bg-gray-100 flex-shrink-0">
+        {/* Header Profile Section */}
+        <header className="mb-14 pb-10 border-b border-[#e6e4dc]">
+          <div className="flex flex-col sm:flex-row items-start gap-6 sm:gap-8 mb-6">
+            <div className="relative w-28 h-28 sm:w-36 sm:h-36 rounded-2xl overflow-hidden border border-[#e6e4dc] bg-[#f4f3ef] ring-4 ring-[#f4f3ef] flex-shrink-0 shadow-sm">
               <Image
                 src="/profile.jpg"
                 alt="Muhammad Saad"
                 fill
                 priority
-                sizes="(max-width: 640px) 112px, 128px"
+                sizes="(max-width: 640px) 112px, 144px"
                 className="object-cover"
               />
             </div>
 
-            <div>
-              <h1 className="text-3xl font-bold tracking-tight text-gray-900 mb-2">
+            <div className="space-y-2">
+              <div className="flex items-center gap-2 text-xs font-mono font-medium text-[#767d8f] uppercase tracking-wider">
+                <span>Undergraduate Engineer</span>
+                <span>·</span>
+                <span>CEN Batch 22</span>
+              </div>
+
+              <h1 className="text-3xl sm:text-4xl font-bold tracking-tight text-[#151927]">
                 Muhammad Saad
+                <span className="text-[#c94a2f]">.</span>
               </h1>
-              <p className="text-base font-medium text-gray-700 mb-2">
-                Senior Computer Engineering Undergraduate • NUTECH Islamabad
+
+              <p className="text-sm sm:text-base font-medium text-[#535a6c]">
+                Senior Computer Engineering Undergraduate · NUTECH Islamabad
               </p>
-              <p className="text-sm text-gray-600 leading-relaxed">
-                Specializing in compute-efficient edge computer vision, systems software, and embedded hardware interfaces. Focused on making machine learning perform reliably on resource-constrained commodity hardware.
+
+              <p className="text-xs sm:text-sm text-[#535a6c] leading-relaxed pt-1">
+                Specializing in compute-efficient edge computer vision, low-level systems software, and embedded hardware interfaces. Focused on making deep learning perform reliably on resource-constrained commodity hardware without requiring expensive enterprise GPUs.
               </p>
             </div>
           </div>
+
+          <div className="flex flex-wrap items-center gap-3 pt-2">
+            <a
+              href="/Saad_CV.pdf"
+              download="Muhammad_Saad_CV.pdf"
+              className="inline-flex items-center gap-2 px-4 py-2 bg-[#151927] text-white text-xs font-mono font-medium rounded hover:bg-[#252c44] transition-colors shadow-sm"
+            >
+              <FileText size={13} />
+              <span>Download Official CV (PDF)</span>
+            </a>
+            <Link
+              href="/work"
+              className="inline-flex items-center gap-1.5 px-4 py-2 border border-[#e6e4dc] bg-[#ffffff] text-[#151927] text-xs font-mono font-medium rounded hover:bg-[#f4f3ef] transition-colors"
+            >
+              <span>Explore builds →</span>
+            </Link>
+          </div>
         </header>
 
-        {/* Narrative */}
-        <section className="mb-20">
-          <h2 className="text-2xl font-bold tracking-tight text-gray-900 mb-3">
+        {/* Narrative / Engineering Philosophy */}
+        <section className="mb-20" aria-labelledby="narrative-heading">
+          <p className="text-xs font-mono font-medium uppercase tracking-wider text-[#767d8f] mb-1">
+            Origins &amp; Philosophy
+          </p>
+          <h2 id="narrative-heading" className="text-2xl font-bold tracking-tight text-[#151927] mb-4">
             Background &amp; Engineering Focus
+            <span className="text-[#c94a2f]">.</span>
           </h2>
-          <div className="space-y-4 text-base text-gray-700 leading-relaxed">
-            <p className="font-medium text-gray-900">
+
+          <div className="p-6 sm:p-7 rounded-2xl bg-[#ffffff] border border-[#e6e4dc] shadow-[0_1px_3px_rgba(21,25,39,0.02)] space-y-4 text-sm sm:text-base text-[#535a6c] leading-relaxed">
+            <p className="font-semibold text-[#151927] text-base sm:text-lg">
               {story.opening}
             </p>
             {story.paragraphs.map((p, index) => (
@@ -65,44 +97,58 @@ export default function AboutPage() {
           </div>
         </section>
 
-        {/* Education & Curriculum */}
-        <section className="mb-20">
-          <h2 className="text-2xl font-bold tracking-tight text-gray-900 mb-2">
+        {/* Academic Foundation & Faculty */}
+        <section className="mb-20" aria-labelledby="academics-heading">
+          <p className="text-xs font-mono font-medium uppercase tracking-wider text-[#767d8f] mb-1">
+            University Education
+          </p>
+          <h2 id="academics-heading" className="text-2xl font-bold tracking-tight text-[#151927] mb-2">
             Academic Foundation
+            <span className="text-[#c94a2f]">.</span>
           </h2>
-          <p className="text-base text-gray-600 mb-8">
+          <p className="text-sm text-[#535a6c] mb-6">
             Undergraduate curriculum paired with applied complex engineering projects at NUTECH Islamabad.
           </p>
 
-          <div className="mb-8">
+          <div className="p-6 rounded-2xl bg-[#ffffff] border border-[#e6e4dc] shadow-[0_1px_3px_rgba(21,25,39,0.02)] mb-8">
             <div className="flex flex-wrap items-baseline justify-between gap-2 mb-1">
-              <h3 className="text-lg font-bold text-gray-900">
-                {education.degree}
-              </h3>
-              <span className="text-xs text-gray-500 font-medium">
+              <div className="flex items-center gap-2">
+                <GraduationCap size={18} className="text-[#c94a2f]" />
+                <h3 className="text-base sm:text-lg font-bold text-[#151927]">
+                  {education.degree}
+                </h3>
+              </div>
+              <span className="text-xs font-mono font-semibold text-[#767d8f] px-2 py-0.5 rounded bg-[#f4f3ef]">
                 CEN Batch 22 (Senior)
               </span>
             </div>
-            <p className="text-base text-gray-700">
+            <p className="text-sm text-[#535a6c] mb-2 pl-6">
               {education.university} — {education.location}
             </p>
-            <p className="text-xs text-gray-500 mt-1">
+            <p className="text-xs text-[#767d8f] pl-6 font-mono">
               Prior: {education.college.degree}, {education.college.institution}
             </p>
-          </div>
 
-          <div className="mb-8">
-            <h4 className="text-sm font-semibold text-gray-900 mb-2">
-              Core Curriculum Focus Areas
-            </h4>
-            <p className="text-sm text-gray-600 leading-relaxed">
-              {education.focusAreas.join(" · ")}
-            </p>
+            <div className="mt-6 pt-5 border-t border-[#f0eee7]">
+              <h4 className="text-xs font-mono font-semibold uppercase tracking-wider text-[#767d8f] mb-3">
+                Core Coursework Focus Areas
+              </h4>
+              <div className="flex flex-wrap gap-1.5">
+                {education.focusAreas.map((area) => (
+                  <span
+                    key={area}
+                    className="px-2.5 py-1 rounded text-xs font-mono bg-[#f4f3ef] text-[#151927] border border-[#e6e4dc]/70"
+                  >
+                    {area}
+                  </span>
+                ))}
+              </div>
+            </div>
           </div>
 
           {/* Department Faculty Photo */}
-          <div>
-            <div className="relative w-full h-64 sm:h-80 md:h-96 rounded-lg overflow-hidden bg-gray-100">
+          <div className="rounded-2xl overflow-hidden border border-[#e6e4dc] bg-[#ffffff] p-2 shadow-sm">
+            <div className="relative w-full h-64 sm:h-80 md:h-96 rounded-xl overflow-hidden bg-[#f4f3ef]">
               <Image
                 src="/story/nutech-cen-faculty.jpg"
                 alt="Muhammad Saad with Computer Engineering faculty and CEN Batch 22 at NUTECH Islamabad"
@@ -111,7 +157,7 @@ export default function AboutPage() {
                 className="object-cover"
               />
             </div>
-            <p className="text-xs text-gray-500 mt-2.5">
+            <p className="text-xs font-mono text-[#767d8f] p-3 text-center">
               Department of Computer Engineering (CEN Batch 22) alongside faculty at NUTECH, Islamabad.
             </p>
           </div>
@@ -128,67 +174,83 @@ export default function AboutPage() {
         </section>
 
         {/* Civic Leadership & Governance */}
-        <section className="mb-20">
-          <h2 className="text-2xl font-bold tracking-tight text-gray-900 mb-2">
-            Civic Leadership &amp; Community
+        <section className="mb-20" aria-labelledby="leadership-heading">
+          <p className="text-xs font-mono font-medium uppercase tracking-wider text-[#767d8f] mb-1">
+            Community &amp; Civic Governance
+          </p>
+          <h2 id="leadership-heading" className="text-2xl font-bold tracking-tight text-[#151927] mb-2">
+            Civic Leadership &amp; Advocacy
+            <span className="text-[#c94a2f]">.</span>
           </h2>
-          <p className="text-base text-gray-600 mb-8 leading-relaxed">
+          <p className="text-sm text-[#535a6c] mb-8 leading-relaxed">
             {leadership.intro}
           </p>
 
-          <div className="space-y-10">
+          <div className="space-y-6">
             {jztOrg && (
-              <article>
-                <div className="flex flex-col sm:flex-row sm:items-start gap-4 mb-3">
+              <article className="p-6 sm:p-7 rounded-2xl bg-[#ffffff] border border-[#e6e4dc] shadow-[0_1px_3px_rgba(21,25,39,0.02)]">
+                <div className="flex flex-col sm:flex-row sm:items-start gap-4 mb-4">
                   {jztOrg.logo && (
-                    <div className="relative w-10 h-10 rounded overflow-hidden bg-gray-50 flex-shrink-0">
+                    <div className="relative w-12 h-12 rounded-xl overflow-hidden border border-[#e6e4dc] bg-[#f4f3ef] flex-shrink-0">
                       <Image
                         src={jztOrg.logo}
                         alt={`${jztOrg.organization} logo`}
                         fill
-                        sizes="40px"
-                        className="object-contain"
+                        sizes="48px"
+                        className="object-contain p-1"
                       />
                     </div>
                   )}
                   <div>
-                    <h3 className="text-lg font-bold text-gray-900">
-                      {jztOrg.role} — {jztOrg.organization}
+                    <div className="flex items-center gap-2 text-xs font-mono text-[#c94a2f] font-semibold mb-0.5">
+                      <Users size={13} />
+                      <span>{jztOrg.role}</span>
+                    </div>
+                    <h3 className="text-lg font-bold text-[#151927]">
+                      {jztOrg.organization}
                     </h3>
-                    <p className="text-xs text-gray-500 mb-2">{jztOrg.fullName}</p>
-                    <p className="text-base text-gray-600 leading-relaxed">
+                    <p className="text-xs font-mono text-[#767d8f] mb-2">{jztOrg.fullName}</p>
+                    <p className="text-xs sm:text-sm text-[#535a6c] leading-relaxed">
                       {jztOrg.description}
                     </p>
                   </div>
                 </div>
 
                 {jztOrg.gallery && jztOrg.gallery.length > 0 && (
-                  <div className="mt-4">
-                    <Gallery images={jztOrg.gallery} title="Initiative Photos" />
+                  <div className="mt-4 pt-4 border-t border-[#f0eee7]">
+                    <Gallery images={jztOrg.gallery} title="Initiative Photography" />
                   </div>
                 )}
               </article>
             )}
 
             {gyfhaOrg && (
-              <article>
-                <h3 className="text-lg font-bold text-gray-900 mb-1">
-                  {gyfhaOrg.role} — {gyfhaOrg.organization}
+              <article className="p-6 sm:p-7 rounded-2xl bg-[#ffffff] border border-[#e6e4dc] shadow-[0_1px_3px_rgba(21,25,39,0.02)]">
+                <div className="flex items-center gap-2 text-xs font-mono text-[#4e6538] font-semibold mb-1">
+                  <Users size={13} />
+                  <span>{gyfhaOrg.role}</span>
+                </div>
+                <h3 className="text-lg font-bold text-[#151927] mb-1">
+                  {gyfhaOrg.organization}
                 </h3>
-                <p className="text-xs text-gray-500 mb-2">{gyfhaOrg.fullName}</p>
-                <p className="text-base text-gray-600 leading-relaxed">
+                <p className="text-xs font-mono text-[#767d8f] mb-2">{gyfhaOrg.fullName}</p>
+                <p className="text-xs sm:text-sm text-[#535a6c] leading-relaxed">
                   {gyfhaOrg.description}
                 </p>
               </article>
             )}
 
             {taxilaOrg && (
-              <article>
-                <h3 className="text-lg font-bold text-gray-900 mb-1">
-                  {taxilaOrg.role} — {taxilaOrg.organization}
+              <article className="p-6 sm:p-7 rounded-2xl bg-[#ffffff] border border-[#e6e4dc] shadow-[0_1px_3px_rgba(21,25,39,0.02)]">
+                <div className="flex items-center gap-2 text-xs font-mono text-[#767d8f] font-semibold mb-1">
+                  <Users size={13} />
+                  <span>{taxilaOrg.role}</span>
+                </div>
+                <h3 className="text-lg font-bold text-[#151927] mb-1">
+                  {taxilaOrg.organization}
                 </h3>
-                <p className="text-xs text-gray-500 mb-2">{taxilaOrg.fullName}</p>
-                <p className="text-base text-gray-600 leading-relaxed">
+                <p className="text-xs font-mono text-[#767d8f] mb-2">{taxilaOrg.fullName}</p>
+                <p className="text-xs sm:text-sm text-[#535a6c] leading-relaxed">
                   {taxilaOrg.description}
                 </p>
               </article>
@@ -197,21 +259,30 @@ export default function AboutPage() {
         </section>
 
         {/* Bottom Actions */}
-        <div className="pt-6 mt-16 flex flex-wrap items-center justify-between gap-4 text-sm">
+        <div className="pt-8 border-t border-[#e6e4dc] flex flex-wrap items-center justify-between gap-4 text-xs font-mono">
           <div className="flex items-center gap-5">
-            <Link href="/work" className="font-medium text-blue-600 hover:underline">
-              Explore engineering builds →
+            <Link
+              href="/work"
+              className="inline-flex items-center gap-1.5 font-medium text-[#151927] hover:text-[#c94a2f] transition-colors"
+            >
+              <span>Explore engineering builds</span>
+              <ArrowRight size={13} />
             </Link>
-            <Link href="/notes" className="text-gray-600 hover:text-gray-900">
-              Read writing &amp; heuristics →
+            <Link
+              href="/notes"
+              className="inline-flex items-center gap-1.5 text-[#535a6c] hover:text-[#151927] transition-colors"
+            >
+              <span>Read writing archive</span>
+              <ArrowRight size={13} />
             </Link>
           </div>
+
           <a
             href="/Saad_CV.pdf"
             download="Muhammad_Saad_CV.pdf"
-            className="px-4 py-2 bg-gray-900 text-white rounded text-xs font-medium hover:bg-gray-800 transition-colors"
+            className="px-4 py-2 bg-[#151927] text-white rounded font-medium hover:bg-[#252c44] transition-colors"
           >
-            Download Official CV
+            Download Official CV (PDF)
           </a>
         </div>
       </div>
