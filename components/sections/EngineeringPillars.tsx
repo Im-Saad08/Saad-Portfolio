@@ -1,4 +1,5 @@
 import { Cpu, Eye, GitBranch } from "lucide-react";
+import { theme } from "@/lib/theme";
 
 export function EngineeringPillars() {
   const pillars = [
@@ -29,13 +30,13 @@ export function EngineeringPillars() {
   ];
 
   return (
-    <section className="py-14 border-y border-[#e5e2d9] bg-[#f2f0e8]/50" aria-labelledby="pillars-heading">
+    <section className="py-14 border-y border-border bg-surface-subtle/50" aria-labelledby="pillars-heading">
       <div className="container">
         <div className="max-w-2xl mb-8">
-          <p className="text-xs font-mono font-medium uppercase tracking-wider text-[#6e7787] mb-1">
+          <p className={theme.styles.kicker}>
             Engineering Foundation
           </p>
-          <h2 id="pillars-heading" className="text-xl sm:text-2xl font-bold tracking-tight text-[#11161b]">
+          <h2 id="pillars-heading" className="text-xl sm:text-2xl font-bold tracking-tight text-ink mt-1">
             Core Technical Disciplines
           </h2>
         </div>
@@ -46,25 +47,25 @@ export function EngineeringPillars() {
             return (
               <div
                 key={pillar.title}
-                className="p-6 rounded-xl bg-[#ffffff] border border-[#e5e2d9] shadow-[0_1px_2px_rgba(17,22,27,0.02)] flex flex-col justify-between"
+                className={`${theme.styles.cardStatic} flex flex-col justify-between`}
               >
                 <div>
-                  <div className="w-9 h-9 rounded-lg bg-[#f2f0e8] border border-[#e5e2d9] flex items-center justify-center text-[#11161b] mb-4">
-                    <Icon size={18} className="text-[#185a37]" />
+                  <div className="w-9 h-9 rounded-lg bg-surface-subtle border border-border flex items-center justify-center text-ink mb-4">
+                    <Icon size={18} className="text-primary" />
                   </div>
-                  <h3 className="text-base font-bold text-[#11161b] mb-1">
+                  <h3 className="text-base font-bold text-ink mb-1">
                     {pillar.title}
                   </h3>
-                  <p className="text-xs font-mono text-[#6e7787] mb-3">
+                  <p className="text-xs font-mono text-ink-subtle mb-3">
                     {pillar.domain}
                   </p>
-                  <p className="text-xs sm:text-sm text-[#4c5562] leading-relaxed mb-4">
+                  <p className="text-xs sm:text-sm text-ink-muted leading-relaxed mb-4">
                     {pillar.summary}
                   </p>
                 </div>
 
-                <div className="pt-3 border-t border-[#efece5] text-xs font-mono text-[#11161b]">
-                  <span className="text-[#6e7787]">Proof: </span>
+                <div className="pt-3 border-t border-border-subtle text-xs font-mono text-ink">
+                  <span className="text-ink-subtle">Proof: </span>
                   <span className="font-medium">{pillar.metric}</span>
                 </div>
               </div>

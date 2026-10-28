@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { theme } from "@/lib/theme";
 
 interface ProjectDiagramGalleryProps {
   images: string[];
@@ -14,18 +15,18 @@ export function ProjectDiagramGallery({
   if (!images || images.length === 0) return null;
 
   return (
-    <div className="my-10 pt-8 border-t border-[#e5e2d9]">
+    <div className="my-10 pt-8 border-t border-border">
       <div className="mb-4">
-        <p className="text-xs font-mono font-medium uppercase tracking-wider text-[#6e7787] mb-1">
+        <p className={theme.styles.kicker}>
           Technical Diagrams &amp; Verification
         </p>
-        <h3 className="text-xl font-bold tracking-tight text-[#11161b]">{title}</h3>
+        <h3 className="text-xl font-bold tracking-tight text-ink mt-1">{title}</h3>
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         {images.map((img, i) => (
           <div
             key={i}
-            className="group relative h-52 sm:h-60 rounded-xl overflow-hidden border border-[#e5e2d9] bg-[#ffffff] shadow-sm hover:border-[#cfccc2] transition-colors"
+            className="group relative h-52 sm:h-60 rounded-xl overflow-hidden border border-border bg-surface shadow-xs hover:border-border-strong transition-colors"
           >
             <Image
               src={img}

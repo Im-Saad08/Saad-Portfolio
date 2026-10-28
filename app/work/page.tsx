@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { getAllProjects, additionalProjects } from "@/projects";
 import { ProjectCard } from "@/components/sections/FeaturedWork";
 import { constructMetadata } from "@/lib/metadata";
+import { theme } from "@/lib/theme";
 import { Wrench } from "lucide-react";
 
 export const metadata: Metadata = constructMetadata({
@@ -25,28 +26,28 @@ export default function WorkPage() {
       <div className="container">
         {/* Page Header */}
         <header className="mb-14 max-w-3xl">
-          <p className="text-xs font-mono font-medium uppercase tracking-wider text-[#6e7787] mb-2">
+          <p className={theme.styles.kicker}>
             Engineering Archive · NUTECH Islamabad
           </p>
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-[#11161b] mb-3 leading-tight">
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-ink mb-3 leading-tight mt-1">
             Engineering Projects
-            <span className="text-[#185a37]">.</span>
+            <span className={theme.styles.headingDot}>.</span>
           </h1>
-          <p className="text-base sm:text-lg text-[#4c5562] leading-relaxed">
+          <p className={theme.styles.bodyLg}>
             Case studies across compute-efficient edge computer vision, embedded systems firmware, operating systems concurrency, and digital signal processing. Every build highlights real hardware bottlenecks and empirical benchmarks.
           </p>
         </header>
 
         {/* Major Systems & Deployments */}
         <section className="mb-20" aria-labelledby="major-systems-heading">
-          <div className="mb-8 pb-3 border-b border-[#e5e2d9]">
-            <p className="text-xs font-mono font-medium uppercase tracking-wider text-[#6e7787] mb-1">
+          <div className="mb-8 pb-3 border-b border-border">
+            <p className={theme.styles.kicker}>
               Field Deployments &amp; Applied Edge Pipelines
             </p>
-            <h2 id="major-systems-heading" className="text-xl sm:text-2xl font-bold tracking-tight text-[#11161b]">
+            <h2 id="major-systems-heading" className="text-xl sm:text-2xl font-bold tracking-tight text-ink mt-1">
               Major Systems &amp; Field Deployments
             </h2>
-            <p className="text-sm text-[#4c5562] mt-1 max-w-2xl">
+            <p className="text-sm text-ink-muted mt-1 max-w-2xl">
               High-throughput computer vision platforms engineered for real-time inference on commodity CPUs under physical constraints.
             </p>
           </div>
@@ -60,14 +61,14 @@ export default function WorkPage() {
 
         {/* Systems Software & Signal Processing */}
         <section className="mb-20" aria-labelledby="core-systems-heading">
-          <div className="mb-8 pb-3 border-b border-[#e5e2d9]">
-            <p className="text-xs font-mono font-medium uppercase tracking-wider text-[#6e7787] mb-1">
+          <div className="mb-8 pb-3 border-b border-border">
+            <p className={theme.styles.kicker}>
               Operating Systems &amp; Algorithmic Pipelines
             </p>
-            <h2 id="core-systems-heading" className="text-xl sm:text-2xl font-bold tracking-tight text-[#11161b]">
+            <h2 id="core-systems-heading" className="text-xl sm:text-2xl font-bold tracking-tight text-ink mt-1">
               Systems Software &amp; Digital Signal Processing
             </h2>
-            <p className="text-sm text-[#4c5562] mt-1 max-w-2xl">
+            <p className="text-sm text-ink-muted mt-1 max-w-2xl">
               Low-level C thread synchronization, custom scheduling algorithms, and medical image segmentation.
             </p>
           </div>
@@ -80,15 +81,15 @@ export default function WorkPage() {
         </section>
 
         {/* Applied Coursework Complex Engineering Projects (CEPs) */}
-        <section className="mt-20 pt-10 border-t border-[#e5e2d9]" aria-labelledby="ceps-heading">
+        <section className="mt-20 pt-10 border-t border-border" aria-labelledby="ceps-heading">
           <div className="mb-8 max-w-2xl">
-            <p className="text-xs font-mono font-medium uppercase tracking-wider text-[#6e7787] mb-1">
+            <p className={theme.styles.kicker}>
               NUTECH Curriculum Engineering
             </p>
-            <h2 id="ceps-heading" className="text-xl sm:text-2xl font-bold tracking-tight text-[#11161b]">
+            <h2 id="ceps-heading" className="text-xl sm:text-2xl font-bold tracking-tight text-ink mt-1">
               Applied Coursework &amp; Complex Engineering Projects (CEPs)
             </h2>
-            <p className="text-sm text-[#4c5562] mt-1">
+            <p className="text-sm text-ink-muted mt-1">
               Applied laboratory implementations, microcontroller firmware, control systems synthesis, and kernel cross-compilations.
             </p>
           </div>
@@ -97,29 +98,29 @@ export default function WorkPage() {
             {additionalProjects.map((item) => (
               <article
                 key={item.title}
-                className="p-6 rounded-xl bg-[#ffffff] border border-[#e5e2d9] hover:border-[#cfccc2] transition-all shadow-[0_1px_3px_rgba(17,22,27,0.02)] flex flex-col justify-between"
+                className={`${theme.styles.card} flex flex-col justify-between`}
               >
                 <div>
-                  <div className="flex items-center gap-2 text-xs font-mono text-[#6e7787] mb-2.5">
-                    <Wrench size={13} className="text-[#185a37]" />
+                  <div className="flex items-center gap-2 text-xs font-mono text-ink-subtle mb-2.5">
+                    <Wrench size={13} className="text-primary" />
                     <span className="uppercase tracking-wider">Coursework CEP</span>
                   </div>
 
-                  <h3 className="text-base sm:text-lg font-bold text-[#11161b] mb-2.5 leading-snug">
+                  <h3 className="text-base sm:text-lg font-bold text-ink mb-2.5 leading-snug">
                     {item.title}
                   </h3>
 
-                  <p className="text-xs sm:text-sm text-[#4c5562] leading-relaxed mb-4">
+                  <p className={theme.styles.body}>
                     {item.description}
                   </p>
                 </div>
 
-                <div className="pt-3 border-t border-[#efece5]">
+                <div className="pt-3 border-t border-border-subtle mt-4">
                   <div className="flex flex-wrap gap-1.5">
                     {item.technologies.map((tech) => (
                       <span
                         key={tech}
-                        className="px-2 py-0.5 rounded text-[11px] font-mono bg-[#f2f0e8] text-[#4c5562]"
+                        className={theme.styles.chip}
                       >
                         {tech}
                       </span>

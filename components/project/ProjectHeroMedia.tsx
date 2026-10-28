@@ -11,7 +11,7 @@ export function ProjectHeroMedia({ src, alt, caption }: ProjectHeroMediaProps) {
 
   return (
     <figure className="mb-10">
-      <div className="relative w-full h-64 sm:h-80 md:h-96 rounded-xl overflow-hidden border border-[#e5e2d9] bg-[#f2f0e8] shadow-sm">
+      <div className="relative w-full h-64 sm:h-80 md:h-96 rounded-xl overflow-hidden border border-border bg-surface-subtle shadow-xs">
         <Image
           src={src}
           alt={alt}
@@ -22,7 +22,7 @@ export function ProjectHeroMedia({ src, alt, caption }: ProjectHeroMediaProps) {
         />
       </div>
       {caption && (
-        <figcaption className="text-xs font-mono text-[#6e7787] mt-2.5 text-center">
+        <figcaption className="text-xs font-mono text-ink-subtle mt-2.5 text-center">
           {caption}
         </figcaption>
       )}

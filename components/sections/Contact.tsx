@@ -1,26 +1,27 @@
 import { Mail, GitBranch, MapPin, FileText, ArrowUpRight } from "lucide-react";
 import { personalInfo } from "@/lib/content";
+import { theme } from "@/lib/theme";
 
 export function Contact() {
   return (
-    <section id="contact" className="py-20 md:py-24 border-t border-[#e5e2d9]" aria-labelledby="contact-heading">
+    <section id="contact" className="py-20 md:py-24 border-t border-border" aria-labelledby="contact-heading">
       <div className="container max-w-3xl">
-        <div className="p-8 sm:p-10 rounded-2xl bg-[#ffffff] border border-[#e5e2d9] shadow-[0_1px_3px_rgba(17,22,27,0.02)]">
-          <p className="text-xs font-mono font-medium uppercase tracking-wider text-[#6e7787] mb-2">
+        <div className="p-8 sm:p-10 rounded-2xl bg-surface border border-border shadow-xs">
+          <p className={theme.styles.kicker}>
             Direct Communication &amp; Inquiries
           </p>
-          <h2 id="contact-heading" className="text-2xl sm:text-3xl font-bold tracking-tight text-[#11161b] mb-3">
+          <h2 id="contact-heading" className="text-2xl sm:text-3xl font-bold tracking-tight text-ink mb-3 mt-1">
             Get in Touch
-            <span className="text-[#185a37]">.</span>
+            <span className={theme.styles.headingDot}>.</span>
           </h2>
-          <p className="text-base sm:text-lg text-[#4c5562] leading-relaxed mb-8 max-w-xl">
+          <p className={theme.styles.bodyLg}>
             Interested in technical discussions regarding edge computer vision pipelines, embedded hardware interfacing, or engineering roles? Let&apos;s connect directly.
           </p>
 
-          <div className="flex flex-wrap items-center gap-3.5 mb-6">
+          <div className="flex flex-wrap items-center gap-3.5 my-8">
             <a
               href={`mailto:${personalInfo.email}`}
-              className="inline-flex items-center gap-2 px-5 py-2.5 bg-[#185a37] text-white text-sm font-medium rounded hover:bg-[#103f27] transition-colors shadow-sm"
+              className={theme.styles.buttonPrimary}
             >
               <Mail size={15} />
               <span>{personalInfo.email}</span>
@@ -30,25 +31,25 @@ export function Contact() {
               href={personalInfo.github}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-4 py-2.5 border border-[#e5e2d9] bg-[#ffffff] text-[#11161b] text-sm font-medium rounded hover:bg-[#f2f0e8] hover:border-[#cfccc2] transition-colors"
+              className={theme.styles.buttonSecondary}
             >
-              <GitBranch size={15} className="text-[#6e7787]" />
+              <GitBranch size={15} className="text-ink-subtle" />
               <span>GitHub</span>
-              <ArrowUpRight size={13} className="text-[#6e7787]" />
+              <ArrowUpRight size={13} className="text-ink-subtle" />
             </a>
 
             <a
               href="/Saad_CV.pdf"
               download="Muhammad_Saad_CV.pdf"
-              className="inline-flex items-center gap-2 px-4 py-2.5 border border-[#e5e2d9] bg-[#ffffff] text-[#11161b] text-sm font-medium rounded hover:bg-[#f2f0e8] hover:border-[#cfccc2] transition-colors"
+              className={theme.styles.buttonSecondary}
             >
-              <FileText size={15} className="text-[#6e7787]" />
+              <FileText size={15} className="text-ink-subtle" />
               <span>CV (PDF)</span>
             </a>
           </div>
 
-          <div className="flex items-center gap-2 text-xs font-mono text-[#6e7787] pt-4 border-t border-[#efece5]">
-            <MapPin size={13} className="text-[#185a37]" />
+          <div className="flex items-center gap-2 text-xs font-mono text-ink-subtle pt-4 border-t border-border-subtle">
+            <MapPin size={13} className="text-primary" />
             <span>{personalInfo.location} · Available for engineering collaborations &amp; research</span>
           </div>
         </div>

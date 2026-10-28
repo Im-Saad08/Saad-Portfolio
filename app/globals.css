@@ -1,6 +1,7 @@
 @import "tailwindcss";
 
 @theme {
+  --color-canvas: #faf9f5;
   --color-background: #faf9f5;
   --color-surface: #ffffff;
   --color-surface-subtle: #f2f0e8;
@@ -8,8 +9,11 @@
   --color-border: #e5e2d9;
   --color-border-subtle: #efece5;
   --color-border-strong: #cfccc2;
+  --color-ink: #11161b;
   --color-text: #11161b;
+  --color-ink-muted: #4c5562;
   --color-text-muted: #4c5562;
+  --color-ink-subtle: #6e7787;
   --color-text-subtle: #6e7787;
   --color-primary: #185a37;
   --color-primary-hover: #103f27;
@@ -32,8 +36,8 @@ html {
 body {
   margin: 0;
   font-family: var(--font-sans);
-  background-color: #faf9f5;
-  color: #11161b;
+  background-color: var(--color-canvas);
+  color: var(--color-ink);
   line-height: 1.65;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -41,11 +45,11 @@ body {
 
 ::selection {
   background-color: rgba(24, 90, 55, 0.15);
-  color: #11161b;
+  color: var(--color-ink);
 }
 
 :focus-visible {
-  outline: 2px solid #185a37;
+  outline: 2px solid var(--color-focus);
   outline-offset: 2px;
 }
 

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { getPublishedNotes } from "@/lib/content";
 import { constructMetadata } from "@/lib/metadata";
+import { theme } from "@/lib/theme";
 import { ArrowRight, BookOpen, FileText } from "lucide-react";
 
 export const metadata: Metadata = constructMetadata({
@@ -19,14 +20,14 @@ export default function NotesPage() {
       <div className="container max-w-3xl">
         {/* Header */}
         <header className="mb-14">
-          <p className="text-xs font-mono font-medium uppercase tracking-wider text-[#6e7787] mb-2">
+          <p className={`${theme.styles.kicker} mb-2`}>
             Technical Archive · Heuristics &amp; Analysis
           </p>
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-[#11161b] mb-3 leading-tight">
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-ink mb-3 leading-tight">
             Writing &amp; Insights
-            <span className="text-[#185a37]">.</span>
+            <span className={theme.styles.headingDot}>.</span>
           </h1>
-          <p className="text-base sm:text-lg text-[#4c5562] leading-relaxed max-w-2xl">
+          <p className={`max-w-2xl ${theme.styles.bodyLg}`}>
             Documented operational engineering heuristics, systems failure mode diagnostics, and macroeconomic observations written after live empirical verification.
           </p>
         </header>
@@ -36,36 +37,36 @@ export default function NotesPage() {
           {publishedNotes.map((note) => (
             <article
               key={note.slug}
-              className="p-7 sm:p-8 rounded-2xl bg-[#ffffff] border border-[#e5e2d9] hover:border-[#cfccc2] transition-all shadow-[0_1px_3px_rgba(17,22,27,0.02)] flex flex-col justify-between"
+              className={`${theme.styles.cardLg} flex flex-col justify-between`}
             >
               <div>
-                <div className="flex flex-wrap items-center gap-2 text-xs font-mono text-[#6e7787] mb-3">
-                  <span className="px-2 py-0.5 rounded bg-[#f2f0e8] text-[#11161b] font-medium">
+                <div className="flex flex-wrap items-center gap-2 text-xs font-mono text-ink-subtle mb-3">
+                  <span className="px-2 py-0.5 rounded bg-surface-subtle text-ink font-medium">
                     {note.category}
                   </span>
                   <span>·</span>
                   <time>{note.date}</time>
                 </div>
 
-                <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-[#11161b] mb-3 leading-snug hover:text-[#185a37] transition-colors">
+                <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-ink mb-3 leading-snug hover:text-primary transition-colors">
                   <Link href={`/notes/${note.slug}`}>
                     {note.title}
                   </Link>
                 </h2>
 
                 {note.excerpt && (
-                  <p className="text-sm sm:text-base text-[#4c5562] leading-relaxed mb-6">
+                  <p className={`${theme.styles.body} mb-6`}>
                     {note.excerpt}
                   </p>
                 )}
               </div>
 
-              <div className="pt-4 border-t border-[#efece5] flex flex-wrap items-center justify-between gap-3 text-xs font-mono">
+              <div className="pt-4 border-t border-border-subtle flex flex-wrap items-center justify-between gap-3 text-xs font-mono">
                 <Link
                   href={`/notes/${note.slug}`}
-                  className="font-semibold text-[#11161b] hover:text-[#185a37] inline-flex items-center gap-1.5 transition-colors"
+                  className={theme.styles.linkText}
                 >
-                  <BookOpen size={13} className="text-[#185a37]" />
+                  <BookOpen size={13} className="text-primary" />
                   <span>Read full essay</span>
                   <ArrowRight size={13} />
                 </Link>
@@ -75,7 +76,7 @@ export default function NotesPage() {
                     href={note.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 text-[#6e7787] hover:text-[#11161b] transition-colors"
+                    className="inline-flex items-center gap-1.5 text-ink-subtle hover:text-ink transition-colors"
                   >
                     <FileText size={13} />
                     <span>IEEE Manuscript (PDF)</span>
