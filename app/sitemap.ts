@@ -1,11 +1,10 @@
 import type { MetadataRoute } from "next";
-import { getAllProjects, getPublishedNotes } from "@/lib/content";
+import { getAllProjects } from "@/lib/content";
 import { siteConfig } from "@/lib/metadata";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = siteConfig.url;
   const projects = getAllProjects();
-  const notes = getPublishedNotes();
 
   const staticRoutes: MetadataRoute.Sitemap = [
     {
@@ -19,18 +18,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: new Date(),
       changeFrequency: "weekly",
       priority: 0.9,
-    },
-    {
-      url: `${baseUrl}/notes`,
-      lastModified: new Date(),
-      changeFrequency: "weekly",
-      priority: 0.9,
-    },
-    {
-      url: `${baseUrl}/now`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.8,
     },
     {
       url: `${baseUrl}/about`,
@@ -47,12 +34,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: p.featured ? 0.9 : 0.8,
   }));
 
-  const noteRoutes: MetadataRoute.Sitemap = notes.map((n) => ({
-    url: `${baseUrl}/notes/${n.slug}`,
-    lastModified: new Date(),
-    changeFrequency: "monthly",
-    priority: 0.8,
-  }));
-
-  return [...staticRoutes, ...projectRoutes, ...noteRoutes];
+  return [...staticRoutes, ...projectRoutes];
 }

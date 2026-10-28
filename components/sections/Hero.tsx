@@ -97,11 +97,11 @@ export function Hero() {
             </div>
 
             <Link
-              href="/now"
+              href="/work/industrial-vision-fyp"
               className="inline-flex items-center gap-1 font-mono text-primary hover:text-primary-hover font-medium transition-colors"
             >
               <Activity size={12} />
-              <span>What I&apos;m doing now →</span>
+              <span>Explore FYP build →</span>
             </Link>
           </div>
         </div>

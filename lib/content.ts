@@ -3,8 +3,7 @@
 // ============================================================
 
 import { projects } from "@/content/projects";
-import { notes } from "@/content/notes";
-import type { Project, Note } from "@/types";
+import type { Project } from "@/types";
 
 export * from "@/types";
 export * from "@/content";
@@ -19,16 +18,4 @@ export function getProjectBySlug(slug: string): Project | undefined {
 
 export function getFeaturedProjects(): Project[] {
   return projects.filter((p) => p.featured);
-}
-
-export function getAllNotes(): Note[] {
-  return notes;
-}
-
-export function getPublishedNotes(): Note[] {
-  return notes.filter((n) => n.published);
-}
-
-export function getNoteBySlug(slug: string): Note | undefined {
-  return notes.find((n) => n.slug === slug);
 }

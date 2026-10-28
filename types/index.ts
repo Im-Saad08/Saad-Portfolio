@@ -50,29 +50,6 @@ export interface Story {
   chapters: StoryChapter[];
 }
 
-export interface NowFocusItem {
-  icon?: string;
-  title: string;
-  description: string;
-}
-
-export interface NowContent {
-  updatedLabel: string;
-  lastUpdated: string;
-  focus: NowFocusItem[];
-}
-
-export interface Note {
-  slug: string;
-  title: string;
-  category: string;
-  published: boolean;
-  date: string;
-  excerpt?: string;
-  link?: string;
-  content?: string;
-}
-
 export interface Project {
   id: number;
   slug: string;

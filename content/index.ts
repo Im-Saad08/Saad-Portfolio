@@ -1,7 +1,5 @@
 export * from "./personal";
 export * from "./projects";
-export * from "./notes";
-export * from "./now";
 export * from "./story";
 export * from "./skills";
 export * from "./education";

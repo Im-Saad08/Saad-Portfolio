@@ -263,22 +263,13 @@ export default function AboutPage() {
 
         {/* Bottom Actions */}
         <div className="pt-8 border-t border-border flex flex-wrap items-center justify-between gap-4 text-xs font-mono">
-          <div className="flex items-center gap-5">
-            <Link
-              href="/work"
-              className={theme.styles.linkText}
-            >
-              <span>Explore engineering builds</span>
-              <ArrowRight size={13} />
-            </Link>
-            <Link
-              href="/notes"
-              className="inline-flex items-center gap-1.5 text-ink-muted hover:text-ink transition-colors"
-            >
-              <span>Read writing archive</span>
-              <ArrowRight size={13} />
-            </Link>
-          </div>
+          <Link
+            href="/work"
+            className={theme.styles.linkText}
+          >
+            <span>Explore engineering builds</span>
+            <ArrowRight size={13} />
+          </Link>
 
           <a
             href="/Saad_CV.pdf"

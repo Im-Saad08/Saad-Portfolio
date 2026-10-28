@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { theme } from "@/lib/theme";
-import { Home, BookOpen, Layers } from "lucide-react";
+import { Home, Users, Layers } from "lucide-react";
 
 export default function NotFound() {
   return (
@@ -35,11 +35,11 @@ export default function NotFound() {
             <span>Engineering Work</span>
           </Link>
           <Link
-            href="/notes"
+            href="/about"
             className={theme.styles.buttonSecondarySm}
           >
-            <BookOpen size={13} className="text-ink-subtle" />
-            <span>Writing Archive</span>
+            <Users size={13} className="text-ink-subtle" />
+            <span>About Saad</span>
           </Link>
         </div>
       </div>

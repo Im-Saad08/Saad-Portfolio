@@ -11,8 +11,8 @@ interface ProjectFooterNavProps {
 export function ProjectFooterNav({
   backLabel = "Return to engineering builds",
   backHref = "/work",
-  nextLabel = "Read writing & heuristics",
-  nextHref = "/notes",
+  nextLabel = "Read background & story",
+  nextHref = "/about",
 }: ProjectFooterNavProps) {
   return (
     <div className="mt-16 pt-8 border-t border-border flex flex-wrap items-center justify-between gap-4 text-xs font-mono">

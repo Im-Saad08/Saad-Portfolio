@@ -17,9 +17,7 @@ export const personalInfo: PersonalInfo = {
 
 export const navItems: NavItem[] = [
   { id: "work", label: "Work", href: "/work" },
-  { id: "writing", label: "Writing", href: "/notes" },
   { id: "about", label: "About", href: "/about" },
-  { id: "now", label: "Now", href: "/now" },
 ];
 
 export const homeIntro: HomeIntro = {
