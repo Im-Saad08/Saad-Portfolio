@@ -29,13 +29,13 @@ export function EngineeringPillars() {
   ];
 
   return (
-    <section className="py-14 border-y border-[#e6e4dc] bg-[#f4f3ef]/50" aria-labelledby="pillars-heading">
+    <section className="py-14 border-y border-[#e5e2d9] bg-[#f2f0e8]/50" aria-labelledby="pillars-heading">
       <div className="container">
         <div className="max-w-2xl mb-8">
-          <p className="text-xs font-mono font-medium uppercase tracking-wider text-[#767d8f] mb-1">
+          <p className="text-xs font-mono font-medium uppercase tracking-wider text-[#6e7787] mb-1">
             Engineering Foundation
           </p>
-          <h2 id="pillars-heading" className="text-xl sm:text-2xl font-bold tracking-tight text-[#151927]">
+          <h2 id="pillars-heading" className="text-xl sm:text-2xl font-bold tracking-tight text-[#11161b]">
             Core Technical Disciplines
           </h2>
         </div>
@@ -46,25 +46,25 @@ export function EngineeringPillars() {
             return (
               <div
                 key={pillar.title}
-                className="p-6 rounded-xl bg-[#ffffff] border border-[#e6e4dc] shadow-[0_1px_2px_rgba(21,25,39,0.02)] flex flex-col justify-between"
+                className="p-6 rounded-xl bg-[#ffffff] border border-[#e5e2d9] shadow-[0_1px_2px_rgba(17,22,27,0.02)] flex flex-col justify-between"
               >
                 <div>
-                  <div className="w-9 h-9 rounded-lg bg-[#f4f3ef] border border-[#e6e4dc] flex items-center justify-center text-[#151927] mb-4">
-                    <Icon size={18} className="text-[#c94a2f]" />
+                  <div className="w-9 h-9 rounded-lg bg-[#f2f0e8] border border-[#e5e2d9] flex items-center justify-center text-[#11161b] mb-4">
+                    <Icon size={18} className="text-[#185a37]" />
                   </div>
-                  <h3 className="text-base font-bold text-[#151927] mb-1">
+                  <h3 className="text-base font-bold text-[#11161b] mb-1">
                     {pillar.title}
                   </h3>
-                  <p className="text-xs font-mono text-[#767d8f] mb-3">
+                  <p className="text-xs font-mono text-[#6e7787] mb-3">
                     {pillar.domain}
                   </p>
-                  <p className="text-xs sm:text-sm text-[#535a6c] leading-relaxed mb-4">
+                  <p className="text-xs sm:text-sm text-[#4c5562] leading-relaxed mb-4">
                     {pillar.summary}
                   </p>
                 </div>
 
-                <div className="pt-3 border-t border-[#f0eee7] text-xs font-mono text-[#151927]">
-                  <span className="text-[#767d8f]">Proof: </span>
+                <div className="pt-3 border-t border-[#efece5] text-xs font-mono text-[#11161b]">
+                  <span className="text-[#6e7787]">Proof: </span>
                   <span className="font-medium">{pillar.metric}</span>
                 </div>
               </div>

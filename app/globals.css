@@ -1,19 +1,20 @@
 @import "tailwindcss";
 
 @theme {
-  --color-canvas: #fbfbf9;
+  --color-background: #faf9f5;
   --color-surface: #ffffff;
-  --color-surface-subtle: #f4f3ef;
-  --color-surface-recessed: #eae8e1;
-  --color-border: #e6e4dc;
-  --color-border-subtle: #f0eee7;
-  --color-border-strong: #d2cfbe;
-  --color-ink: #151927;
-  --color-ink-muted: #535a6c;
-  --color-ink-subtle: #767d8f;
-  --color-signal: #c94a2f;
-  --color-signal-hover: #b33d24;
-  --color-olive: #4e6538;
+  --color-surface-subtle: #f2f0e8;
+  --color-surface-recessed: #eae6dd;
+  --color-border: #e5e2d9;
+  --color-border-subtle: #efece5;
+  --color-border-strong: #cfccc2;
+  --color-text: #11161b;
+  --color-text-muted: #4c5562;
+  --color-text-subtle: #6e7787;
+  --color-primary: #185a37;
+  --color-primary-hover: #103f27;
+  --color-primary-subtle: #eaf2ec;
+  --color-focus: #185a37;
 
   --font-sans: var(--font-inter), system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   --font-mono: var(--font-jetbrains-mono), ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
@@ -31,20 +32,20 @@ html {
 body {
   margin: 0;
   font-family: var(--font-sans);
-  background-color: #fbfbf9;
-  color: #151927;
+  background-color: #faf9f5;
+  color: #11161b;
   line-height: 1.65;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 ::selection {
-  background-color: rgba(201, 74, 47, 0.15);
-  color: #151927;
+  background-color: rgba(24, 90, 55, 0.15);
+  color: #11161b;
 }
 
 :focus-visible {
-  outline: 2px solid #c94a2f;
+  outline: 2px solid #185a37;
   outline-offset: 2px;
 }
 

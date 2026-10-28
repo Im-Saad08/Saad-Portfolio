@@ -14,18 +14,18 @@ export function ProjectDiagramGallery({
   if (!images || images.length === 0) return null;
 
   return (
-    <div className="my-10 pt-8 border-t border-[#e6e4dc]">
+    <div className="my-10 pt-8 border-t border-[#e5e2d9]">
       <div className="mb-4">
-        <p className="text-xs font-mono font-medium uppercase tracking-wider text-[#767d8f] mb-1">
+        <p className="text-xs font-mono font-medium uppercase tracking-wider text-[#6e7787] mb-1">
           Technical Diagrams &amp; Verification
         </p>
-        <h3 className="text-xl font-bold tracking-tight text-[#151927]">{title}</h3>
+        <h3 className="text-xl font-bold tracking-tight text-[#11161b]">{title}</h3>
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         {images.map((img, i) => (
           <div
             key={i}
-            className="group relative h-52 sm:h-60 rounded-xl overflow-hidden border border-[#e6e4dc] bg-[#ffffff] shadow-sm hover:border-[#d2cfbe] transition-colors"
+            className="group relative h-52 sm:h-60 rounded-xl overflow-hidden border border-[#e5e2d9] bg-[#ffffff] shadow-sm hover:border-[#cfccc2] transition-colors"
           >
             <Image
               src={img}

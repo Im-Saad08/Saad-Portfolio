@@ -7,22 +7,22 @@ export function FeaturedWriting() {
   const featured = published.slice(0, 2);
 
   return (
-    <section className="py-20 md:py-24 border-t border-[#e6e4dc] bg-[#fbfbf9]" aria-labelledby="writing-heading">
+    <section className="py-20 md:py-24 border-t border-[#e5e2d9] bg-[#faf9f5]" aria-labelledby="writing-heading">
       <div className="container">
         {/* Section Header */}
-        <div className="flex flex-col sm:flex-row sm:items-baseline justify-between mb-12 gap-3 pb-4 border-b border-[#e6e4dc]">
+        <div className="flex flex-col sm:flex-row sm:items-baseline justify-between mb-12 gap-3 pb-4 border-b border-[#e5e2d9]">
           <div>
-            <p className="text-xs font-mono font-medium uppercase tracking-wider text-[#767d8f] mb-1">
+            <p className="text-xs font-mono font-medium uppercase tracking-wider text-[#6e7787] mb-1">
               Manuscripts &amp; Heuristics
             </p>
-            <h2 id="writing-heading" className="text-2xl sm:text-3xl font-bold tracking-tight text-[#151927]">
+            <h2 id="writing-heading" className="text-2xl sm:text-3xl font-bold tracking-tight text-[#11161b]">
               Selected Writing
-              <span className="text-[#c94a2f]">.</span>
+              <span className="text-[#185a37]">.</span>
             </h2>
           </div>
           <Link
             href="/notes"
-            className="inline-flex items-center gap-1.5 text-xs font-mono font-medium text-[#151927] hover:text-[#c94a2f] transition-colors"
+            className="inline-flex items-center gap-1.5 text-xs font-mono font-medium text-[#11161b] hover:text-[#185a37] transition-colors"
           >
             <span>View all writing archive →</span>
           </Link>
@@ -33,41 +33,41 @@ export function FeaturedWriting() {
           {featured.map((note) => (
             <article
               key={note.slug}
-              className="p-6 sm:p-7 rounded-xl bg-[#ffffff] border border-[#e6e4dc] hover:border-[#d2cfbe] transition-all shadow-[0_1px_3px_rgba(21,25,39,0.02)] flex flex-col justify-between"
+              className="p-6 sm:p-7 rounded-xl bg-[#ffffff] border border-[#e5e2d9] hover:border-[#cfccc2] transition-all shadow-[0_1px_3px_rgba(17,22,27,0.02)] flex flex-col justify-between"
             >
               <div>
-                <div className="flex items-center gap-2 text-xs font-mono text-[#767d8f] mb-3">
-                  <span className="px-2 py-0.5 rounded bg-[#f4f3ef] text-[#151927] font-medium">
+                <div className="flex items-center gap-2 text-xs font-mono text-[#6e7787] mb-3">
+                  <span className="px-2 py-0.5 rounded bg-[#f2f0e8] text-[#11161b] font-medium">
                     {note.category}
                   </span>
                   <span>·</span>
                   <time>{note.date}</time>
                 </div>
 
-                <h3 className="text-xl font-bold tracking-tight text-[#151927] mb-3 leading-snug hover:text-[#c94a2f] transition-colors">
+                <h3 className="text-xl font-bold tracking-tight text-[#11161b] mb-3 leading-snug hover:text-[#185a37] transition-colors">
                   <Link href={`/notes/${note.slug}`}>
                     {note.title}
                   </Link>
                 </h3>
 
                 {note.excerpt && (
-                  <p className="text-sm sm:text-base text-[#535a6c] leading-relaxed mb-6">
+                  <p className="text-sm sm:text-base text-[#4c5562] leading-relaxed mb-6">
                     {note.excerpt}
                   </p>
                 )}
               </div>
 
-              <div className="pt-4 border-t border-[#f0eee7] flex items-center justify-between text-xs">
+              <div className="pt-4 border-t border-[#efece5] flex items-center justify-between text-xs">
                 <Link
                   href={`/notes/${note.slug}`}
-                  className="font-semibold text-[#151927] hover:text-[#c94a2f] inline-flex items-center gap-1.5 transition-colors"
+                  className="font-semibold text-[#11161b] hover:text-[#185a37] inline-flex items-center gap-1.5 transition-colors"
                 >
-                  <BookOpen size={13} className="text-[#c94a2f]" />
+                  <BookOpen size={13} className="text-[#185a37]" />
                   <span>Read essay</span>
                   <ArrowRight size={13} />
                 </Link>
 
-                <span className="font-mono text-[#767d8f]">
+                <span className="font-mono text-[#6e7787]">
                   Operational Heuristic
                 </span>
               </div>
